@@ -8,6 +8,7 @@ import {
   FiCopy,
   FiCheck,
 } from "react-icons/fi"
+import { FaTiktok } from "react-icons/fa"
 
 export default function ServiceDetailsSection({ serviceData }) {
   const [copied, setCopied] = useState(false)
@@ -116,6 +117,15 @@ export default function ServiceDetailsSection({ serviceData }) {
                   className="hover:opacity-70 transition-opacity"
                 >
                   <FiInstagram className="w-[17px] h-[17px]" />
+                </a>
+                <a
+                  href="https://www.tiktok.com/@versanexinc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok"
+                  className="hover:opacity-70 transition-opacity"
+                >
+                  <FaTiktok className="w-[15px] h-[15px]" />
                 </a>
                 <a
                   href="https://www.linkedin.com/company/versanex"

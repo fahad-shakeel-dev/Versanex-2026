@@ -2,7 +2,7 @@
 
 The services dropdown's entire Tailored Solutions card, including “Talk to an expert”, now links to `/contact` and closes the dropdown. The existing “Begin Your Project” CTA also links to `/contact`. Desktop dropdowns support ArrowDown to open/focus their links and Escape to close/restore focus. Mobile menus close and reset after navigation or Escape.
 
-The service-page share button now opens native sharing when supported and copies the current page URL otherwise. Clipboard failures do not display false success. Instagram and LinkedIn point to the configured VersaNex company profiles. Behance is removed, and TikTok stays out pending the profile URL, as requested. Noninteractive process rows no longer use a pointer cursor.
+The service-page share button now opens native sharing when supported and copies the current page URL otherwise. Clipboard failures do not display false success. Instagram and LinkedIn point to the configured VersaNex company profiles. Behance is removed. TikTok links to the supplied profile, `https://www.tiktok.com/@versanexinc`. Noninteractive process rows no longer use a pointer cursor.
 
 The floating WhatsApp link uses the same configured number in digits-only URL form, following the [official WhatsApp linking guidance](https://faq.whatsapp.com/425247423114725/).
 
