@@ -22,7 +22,7 @@ For manual Chrome audits, use a Guest window or a fresh profile with extensions 
 
 - Enabled responsive Next image optimization across service and project cards.
 - Reduced the decorative video poster from 526,380 bytes to 45,522 bytes.
-- Start decorative video loops when their panel becomes visible, pause them offscreen or in a background tab, and keep hidden mobile/desktop players unloaded.
+- Discover intro and hero video sources in the initial HTML, preload them, and play the hero beneath the intro. Keep later video panels lazy and pause loops offscreen or in a background tab.
 - Load below-the-fold section JavaScript as visitors approach those sections. Preserve direct contact and other section hash links.
 - Avoid mounting the desktop scroll scene on mobile. Reserve its desktop height before initialization to prevent a layout shift.
 - Update the process animation's React state only when a step activates; keep the line animation and activation thresholds.
@@ -54,7 +54,20 @@ Reports: [mobile](../artifacts/lighthouse-mobile-final.report.html), [desktop](.
 
 The production build passes. Browser checks cover 320, 390, 768, and 1440-pixel widths, desktop/mobile scene selection, horizontal overflow, font loading, visible broken images, JavaScript errors, and contact hash navigation. The contact form still offers the same four approved services. No form submissions were sent during verification.
 
-The unchanged intro deliberately delays the main video reveal. Its render delay and JavaScript hydration remain mobile performance bottlenecks. A perfect performance score would require further decisions about the intro, media, and startup interactions. Local results do not guarantee deployed scores or accessibility beyond the automated checks.
+The unchanged intro deliberately delays the main video reveal. Its render delay and JavaScript hydration remain mobile performance bottlenecks, although the hero video now loads and starts during the intro. A perfect performance score would require further decisions about the intro, media, and startup interactions. Local results do not guarantee deployed scores or accessibility beyond the automated checks.
+
+## Hero video startup
+
+The versioned streaming copies retain the complete 43.5-second sequence. Desktop retains the original 1920-by-872 resolution and mobile uses 960-by-436. Both remove unused audio, use one-second keyframe intervals, and place MP4 metadata before video data for progressive playback. The original video files and fallback poster remain available unchanged.
+
+- Desktop: 46,784,794 bytes to 14,306,620 bytes, about 69% smaller.
+- Mobile: 46,784,794 bytes to 4,310,303 bytes, about 91% smaller.
+- Explicit responsive sources let the browser discover the matching video before hydration; the main hero no longer waits for the intro to finish before loading.
+- Versioned streaming assets support byte-range requests and immutable caching. The later projects-panel player stays lazy.
+
+Local production checks passed at 390, 1440, and 2600 pixels, including source selection, playback before the intro finishes, the handoff to an already-playing hero, no horizontal overflow, and no JavaScript errors. An isolated cold-cache Chrome test at 1.6 Mbps with 100 ms latency measured first playback at 1,409 ms for the original file, 484 ms for the desktop copy, and 367 ms for the mobile copy. These video-only measurements exclude page JavaScript and production CDN conditions; they do not guarantee startup times on every connection or autoplay policy.
+
+Verification artifacts: `artifacts/hero-video-startup/verification.json` and screenshots in the same ignored directory. The production build passes.
 
 See [Lighthouse performance scoring](https://developer.chrome.com/docs/lighthouse/performance/performance-scoring) and [Next image optimization](https://nextjs.org/docs/app/api-reference/components/image).
 

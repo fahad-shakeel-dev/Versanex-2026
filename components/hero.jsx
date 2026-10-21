@@ -208,7 +208,7 @@ function DesktopHero({ introVisible, isRevealed }) {
                 }}
                 className="relative z-10 overflow-hidden bg-black shadow-2xl"
               >
-                <ShowcaseVideo enabled={!introVisible}
+                <ShowcaseVideo eager
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </motion.div>
@@ -378,7 +378,7 @@ export default function Hero() {
         </div>
 
         <div className="mt-10 relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-black shadow-xl">
-          <ShowcaseVideo enabled={!introVisible}
+          <ShowcaseVideo eager
             className="w-full h-full object-cover"
           />
         </div>

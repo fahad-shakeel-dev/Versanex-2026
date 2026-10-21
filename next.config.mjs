@@ -112,6 +112,10 @@ const nextConfig = {
         source: '/admin/:path*',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
       },
+      ...["/hero-showreel-desktop-v2.mp4", "/hero-showreel-mobile-v2.mp4"].map(source => ({
+        source,
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+      })),
       {
         source: '/:all*(svg|jpg|jpeg|png|webp|avif|ico|woff|woff2)',
         headers: [

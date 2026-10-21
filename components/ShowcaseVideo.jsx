@@ -2,23 +2,26 @@
 
 import { useEffect, useRef } from "react"
 
-// Keep decorative loops off the network and decoder until their panel is visible.
+// Discover eager videos in the initial HTML; keep later panels lazy.
 export default function ShowcaseVideo({ eager = false, enabled = true, ...props }) {
   const videoRef = useRef(null)
 
   useEffect(() => {
     const video = videoRef.current
+    if (video) {
+      video.muted = true
+      video.defaultMuted = true
+    }
     if (!video || !enabled) {
       video?.pause()
       return
     }
     const source = window.matchMedia("(min-width: 1024px)").matches
-      ? "/hero-video-desktop.mp4" : "/hero-video-mobile.mp4"
-    if (eager && !video.getAttribute("src")) video.src = source
-    let visible = false
+      ? "/hero-showreel-desktop-v2.mp4" : "/hero-showreel-mobile-v2.mp4"
+    let visible = eager
     const syncPlayback = () => {
       if (visible && !document.hidden) {
-        if (!video.getAttribute("src")) video.src = source
+        if (!eager && !video.getAttribute("src")) video.src = source
         video.play()?.catch(() => {})
       } else video.pause()
     }
@@ -27,6 +30,7 @@ export default function ShowcaseVideo({ eager = false, enabled = true, ...props 
       syncPlayback()
     }, { threshold: 0.01 })
     observer.observe(video)
+    syncPlayback()
     document.addEventListener("visibilitychange", syncPlayback)
     return () => {
       observer.disconnect()
@@ -36,6 +40,11 @@ export default function ShowcaseVideo({ eager = false, enabled = true, ...props 
   }, [enabled, eager])
 
   return <video {...props} ref={videoRef}
-    poster="/hero-showcase.webp" muted loop playsInline preload={eager ? "metadata" : "none"}
-    aria-hidden="true" tabIndex={-1} />
+    poster="/hero-showcase.webp" muted loop playsInline autoPlay={eager && enabled} preload={eager ? "auto" : "none"}
+    aria-hidden="true" tabIndex={-1}>
+    {eager && <>
+      <source src="/hero-showreel-desktop-v2.mp4" type="video/mp4" media="(min-width: 1024px)" />
+      <source src="/hero-showreel-mobile-v2.mp4" type="video/mp4" />
+    </>}
+  </video>
 }
