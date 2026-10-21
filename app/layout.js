@@ -7,6 +7,7 @@ import CookieBaner from '@/components/CookieBanner'
 import LenisProvider from '@/components/LenisProvider'
 
 import { SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
+import { mediaUrl } from "@/lib/media-url";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -20,12 +21,12 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon.ico" },
+      { url: mediaUrl("/favicon-16x16.png"), sizes: "16x16", type: "image/png" },
+      { url: mediaUrl("/favicon-32x32.png"), sizes: "32x32", type: "image/png" },
+      { url: mediaUrl("/favicon.ico") },
     ],
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: mediaUrl("/apple-touch-icon.png"), sizes: "180x180", type: "image/png" },
     ],
     other: [
       {
@@ -34,12 +35,12 @@ export const metadata = {
       },
       {
         rel: "android-chrome",
-        url: "/android-chrome-192x192.png",
+        url: mediaUrl("/android-chrome-192x192.png"),
         sizes: "192x192",
       },
       {
         rel: "android-chrome",
-        url: "/android-chrome-512x512.png",
+        url: mediaUrl("/android-chrome-512x512.png"),
         sizes: "512x512",
       },
     ],
@@ -53,7 +54,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.versanex.site/og-image.jpeg",
+        url: mediaUrl("/og-image.jpeg"),
         width: 1200,
         height: 630,
         alt: "VersaNex — Software House",
@@ -65,7 +66,7 @@ export const metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     creator: "@VersaNex",
-    images: ["https://www.versanex.site/og-image.jpeg"],
+    images: [mediaUrl("/og-image.jpeg")],
   },
 };
 
@@ -73,6 +74,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="preload" href="/fonts/geist-sans-v1.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/geist-mono-v1.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
@@ -82,7 +84,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
             "@context": "https://schema.org",
             "@graph": [
-              { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "VersaNex", url: SITE_URL, logo: `${SITE_URL}/logo.png`, description: SITE_DESCRIPTION },
+              { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "VersaNex", url: SITE_URL, logo: mediaUrl("/logo.png"), description: SITE_DESCRIPTION },
               { "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: "VersaNex", url: SITE_URL, inLanguage: "en", publisher: { "@id": `${SITE_URL}/#organization` } },
             ],
           }).replace(/</g, "\\u003c") }}

@@ -11,6 +11,7 @@ const cspHeader = `
   script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.instagram.com https://*.cdninstagram.com https://www.googletagmanager.com https://connect.facebook.net https://*.facebook.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   img-src 'self' data: blob: https://res.cloudinary.com https://*.cloudinary.com https://*.cdninstagram.com https://*.fbcdn.net https://www.facebook.com https://images.unsplash.com;
+  media-src 'self' blob: https://res.cloudinary.com;
   font-src 'self' data: https://fonts.gstatic.com;
   frame-src 'self' https://www.instagram.com https://*.instagram.com https://www.facebook.com https://*.facebook.com;
   connect-src 'self' https://www.instagram.com https://*.cdninstagram.com https://www.google-analytics.com https://www.facebook.com https://res.cloudinary.com https://*.cloudinary.com;

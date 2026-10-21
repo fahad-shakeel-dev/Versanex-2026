@@ -659,13 +659,14 @@
 "use client";
 import { useState, useEffect, memo, useMemo, useRef } from "react";
 import Image from "@/components/optimized-image";
+import { mediaUrl } from "@/lib/media-url";
 import { motion } from "framer-motion";
 import { FaPlay, FaPause, FaStop, FaVolumeUp, FaVolumeMute, FaBackward, FaForward } from "react-icons/fa";
 
 const getMediaInfo = (url) => {
   let type = 'image';
   let thumbnail = url;
-  let embedUrl = url;
+  let embedUrl = mediaUrl(url);
   let videoId = null;
   let fileId = null;
   let postId = null;
@@ -673,7 +674,7 @@ const getMediaInfo = (url) => {
   if (url.match(/\.(mp4|webm|ogg)$/i)) {
     type = 'video';
     thumbnail = null;
-    embedUrl = url;
+    embedUrl = mediaUrl(url);
   } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
     videoId = url.split('v=')[1]?.split('&')[0] || url.split('/').pop().split('?')[0];
     type = 'youtube';
@@ -758,7 +759,7 @@ export default function GalleryTab({
       const { thumbnail } = getMediaInfo(img.url);
       if (thumbnail) {
         const preloadImg = new window.Image();
-        preloadImg.src = thumbnail;
+        preloadImg.src = mediaUrl(thumbnail);
       }
     });
   }, [images]);
