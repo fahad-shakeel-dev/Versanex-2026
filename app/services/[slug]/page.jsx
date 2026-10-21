@@ -381,7 +381,7 @@ export default function ServiceDetailPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen bg-[#f4f4f5]">
         {/* NEW hero */}
         <ServiceHero service={service} />
         <ServiceAboutSection {...service.aboutData} />
