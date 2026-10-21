@@ -6,7 +6,7 @@ export const projectCategories = [
   { key: "All", label: "All" },
   { key: "website-developing", label: "Web Design" },
   { key: "mobile-app-development", label: "Mobile Apps" },
-  { key: "ui-ux", label: "UX/UI" },
+  // { key: "ui-ux", label: "UX/UI" },
 ]
 
 export default function PortfolioHeader({ activeFilter, onFilterChange, view, onViewChange }) {
