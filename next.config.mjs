@@ -14,7 +14,7 @@ const cspHeader = `
   media-src 'self' blob: https://res.cloudinary.com;
   font-src 'self' data: https://fonts.gstatic.com;
   frame-src 'self' https://www.instagram.com https://*.instagram.com https://www.facebook.com https://*.facebook.com;
-  connect-src 'self' https://www.instagram.com https://*.cdninstagram.com https://www.google-analytics.com https://www.facebook.com https://res.cloudinary.com https://*.cloudinary.com;
+  connect-src 'self' https://www.instagram.com https://*.cdninstagram.com https://www.google-analytics.com https://www.facebook.com https://res.cloudinary.com https://*.cloudinary.com https://formspree.io;
   object-src 'none';
   base-uri 'self';
   form-action 'self';

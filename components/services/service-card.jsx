@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { FaArrowRight } from "react-icons/fa"
+import Link from "next/link"
 
 export default function ProcessFlow() {
   const containerRef = useRef(null)
@@ -222,10 +223,10 @@ export default function ProcessFlow() {
         {/* Bottom CTA */}
         <div className="mt-20 text-center">
           <p className="text-slate-600 mb-8">Ready to start your journey with us?</p>
-          <button className="inline-flex items-center gap-3 bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+          <Link href="/contact" className="inline-flex items-center gap-3 bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
             Begin Your Project
             <FaArrowRight className="w-4 h-4" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

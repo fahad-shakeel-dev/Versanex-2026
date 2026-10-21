@@ -95,7 +95,7 @@ export function ServicesMegaMenu({ services, setHoveredMenu }) {
         </div>
 
         {/* Strategy Spotlight Card */}
-        <div className="mt-4 bg-white p-3 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-1 group hover:border-[#f2ad08]/30 hover:shadow-md transition-all duration-150 cursor-pointer">
+        <Link href="/contact" onClick={() => setHoveredMenu?.(null)} className="mt-4 bg-white p-3 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-1 group hover:border-[#f2ad08]/30 hover:shadow-md transition-all duration-150 cursor-pointer">
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#f2ad08] animate-pulse" />
             <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
@@ -108,7 +108,7 @@ export function ServicesMegaMenu({ services, setHoveredMenu }) {
           <span className="text-xs font-bold text-[#f2ad08] group-hover:translate-x-0.5 transition-transform duration-150 inline-flex items-center gap-1">
             Talk to an expert &rarr;
           </span>
-        </div>
+        </Link>
       </div>
 
       {/* Right Column: Instant Super-Smooth Hover Capability List */}
@@ -278,11 +278,32 @@ export default function Navbar() {
 
   const handleMobileClose = useCallback(() => {
     setOpen(false)
+    setOpenDropdown(null)
+  }, [])
+
+  const handleMenuKeyDown = useCallback((event, menu) => {
+    if (event.key !== "ArrowDown") return
+    event.preventDefault()
+    clearTimeout(hoverTimeout.current)
+    setHoveredMenu(menu)
+    requestAnimationFrame(() => {
+      navRef.current?.querySelector(`[data-menu="${menu}"] a`)?.focus()
+    })
   }, [])
 
   return (
     <header
       ref={navRef}
+      onKeyDown={event => {
+        if (event.key !== "Escape") return
+        event.preventDefault()
+        clearTimeout(hoverTimeout.current)
+        const trigger = open ? '[aria-label="Open menu"]' : `[data-menu-trigger="${hoveredMenu}"]`
+        setHoveredMenu(null)
+        setOpen(false)
+        setOpenDropdown(null)
+        navRef.current?.querySelector(trigger)?.focus()
+      }}
       className={`relative z-50 w-full transition-all duration-300 ease-in-out border-b border-gray-200/60 ${scrolled
           ? "bg-[#f8f9fa]/95 backdrop-blur-xl shadow-sm"
           : "bg-[#f8f9fa]"
@@ -326,6 +347,8 @@ export default function Navbar() {
           >
             <Link
               href="/services"
+              data-menu-trigger="services"
+              onKeyDown={event => handleMenuKeyDown(event, "services")}
               className="text-[#1b2b40] hover:text-black font-normal text-[16px] tracking-tight transition-colors duration-150 flex items-center gap-1.5 py-1"
               aria-expanded={hoveredMenu === "services"}
               aria-haspopup="menu"
@@ -343,6 +366,8 @@ export default function Navbar() {
           >
             <Link
               href="/projects"
+              data-menu-trigger="projects"
+              onKeyDown={event => handleMenuKeyDown(event, "projects")}
               className="text-[#1b2b40] hover:text-black font-normal text-[16px] tracking-tight transition-colors duration-150 flex items-center gap-1.5 py-1"
               aria-expanded={hoveredMenu === "projects"}
               aria-haspopup="menu"
@@ -372,6 +397,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Trigger */}
         <button
+          type="button"
           className="md:hidden p-2 rounded-lg hover:bg-gray-200/50 transition-all duration-150"
           onClick={() => setOpen(true)}
           aria-label="Open menu"
@@ -395,6 +421,8 @@ export default function Navbar() {
             onMouseLeave={handleMenuLeave}
             role="menu"
             aria-label="Services menu"
+            data-menu="services"
+            onFocusCapture={() => clearTimeout(hoverTimeout.current)}
           >
             <ServicesMegaMenu services={services} setHoveredMenu={setHoveredMenu} />
           </motion.div>
@@ -414,6 +442,8 @@ export default function Navbar() {
             onMouseLeave={handleMenuLeave}
             role="menu"
             aria-label="Our projects menu"
+            data-menu="projects"
+            onFocusCapture={() => clearTimeout(hoverTimeout.current)}
           >
             <ProjectsMegaMenu setHoveredMenu={setHoveredMenu} />
           </motion.div>

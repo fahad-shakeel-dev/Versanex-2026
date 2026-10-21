@@ -18,12 +18,13 @@ import styles from "./footer.module.css";
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState(null);
 
   const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      const { toast } = await import("./notifications");
-      if (!email.trim()) return toast.error("Please enter your email");
+      if (!email.trim()) return setFeedback({ error: true, message: "Please enter your email" });
+      setFeedback(null);
 
       try {
         setLoading(true);
@@ -42,13 +43,13 @@ export default function Footer() {
         const data = await res.json();
 
         if (res.ok) {
-          toast.success("Subscribed successfully 🎉");
+          setFeedback({ error: false, message: "Subscribed successfully 🎉" });
           setEmail("");
         } else {
-          toast.error(data.message || "Subscription failed");
+          setFeedback({ error: true, message: data.message || "Subscription failed" });
         }
       } catch {
-        toast.error("Something went wrong. Please try again.");
+        setFeedback({ error: true, message: "Something went wrong. Please try again." });
       } finally {
         setLoading(false);
       }
@@ -188,6 +189,7 @@ export default function Footer() {
                 )}
               </button>
             </form>
+            {feedback && <p role={feedback.error ? "alert" : "status"} className="-mt-3 mb-4 text-sm text-gray-300">{feedback.message}</p>}
 
             {/* Social icons with animation */}
             <div className={`${styles.socials} flex gap-4`} aria-label="Social media links">

@@ -52,7 +52,7 @@ export default function DesignProcessSection({ steps }) {
             {processSteps.map((step, index) => (
               <div
                 key={index}
-                className="group py-8 sm:py-10 border-t border-[#e2e8f0] first:border-t-0 lg:first:border-t flex flex-col gap-3 transition-colors duration-300 cursor-pointer"
+                className="group py-8 sm:py-10 border-t border-[#e2e8f0] first:border-t-0 lg:first:border-t flex flex-col gap-3 transition-colors duration-300"
               >
                 {/* Header Row: Step Number, Title, and Duration Badge */}
                 <div className="flex items-start justify-between gap-4">

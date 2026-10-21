@@ -22,7 +22,7 @@ export default function WhatsappButton() {
 
       {/* WhatsApp Button */}
       <a
-        href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
+        href={`https://wa.me/${phoneNumber.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contact us via WhatsApp"

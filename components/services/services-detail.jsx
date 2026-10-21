@@ -8,7 +8,6 @@ import {
   FiCopy,
   FiCheck,
 } from "react-icons/fi"
-import { FaBehance, FaTiktok } from "react-icons/fa"
 
 export default function ServiceDetailsSection({ serviceData }) {
   const [copied, setCopied] = useState(false)
@@ -44,12 +43,36 @@ export default function ServiceDetailsSection({ serviceData }) {
     ],
   }
 
-  const handleCopyLink = () => {
-    if (typeof window !== "undefined") {
-      navigator.clipboard.writeText(window.location.href)
+  const handleCopyLink = async () => {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(window.location.href)
+      } else {
+        const field = document.createElement("textarea")
+        field.value = window.location.href
+        field.style.position = "fixed"
+        field.style.opacity = "0"
+        document.body.appendChild(field)
+        field.select()
+        const copied = document.execCommand("copy")
+        field.remove()
+        if (!copied) return
+      }
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
+    } catch { /* A denied clipboard request must not show a false success. */ }
+  }
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: document.title, url: window.location.href })
+        return
+      } catch (error) {
+        if (error.name === "AbortError") return
+      }
     }
+    await handleCopyLink()
   }
 
   return (
@@ -67,6 +90,7 @@ export default function ServiceDetailsSection({ serviceData }) {
               <div className="flex flex-col items-center gap-0.5">
                 <button
                   type="button"
+                  onClick={handleShare}
                   aria-label="Share page"
                   className="p-1 text-[#0f1420] hover:text-black transition-colors"
                 >
@@ -85,7 +109,7 @@ export default function ServiceDetailsSection({ serviceData }) {
               {/* Social Nav Icons */}
               <div className="flex flex-col items-center gap-[18px] text-[#0f1420]">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/versanexinc"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Instagram"
@@ -94,25 +118,7 @@ export default function ServiceDetailsSection({ serviceData }) {
                   <FiInstagram className="w-[17px] h-[17px]" />
                 </a>
                 <a
-                  href="https://behance.net"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Behance"
-                  className="hover:opacity-70 transition-opacity"
-                >
-                  <FaBehance className="w-[17px] h-[17px]" />
-                </a>
-                <a
-                  href="https://tiktok.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="TikTok"
-                  className="hover:opacity-70 transition-opacity"
-                >
-                  <FaTiktok className="w-[15px] h-[15px]" />
-                </a>
-                <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/company/versanex"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
@@ -125,7 +131,7 @@ export default function ServiceDetailsSection({ serviceData }) {
                 <button
                   onClick={handleCopyLink}
                   type="button"
-                  aria-label="Copy Link"
+                  aria-label={copied ? "Link copied" : "Copy Link"}
                   className="hover:opacity-70 transition-opacity pt-0.5"
                   title="Copy link"
                 >
