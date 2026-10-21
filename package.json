@@ -2,6 +2,7 @@
   "name": "my-v0-project",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.34.7",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=4096 next build",
     "dev": "cross-env NODE_OPTIONS=--max-old-space-size=1536 next dev",
