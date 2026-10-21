@@ -7,12 +7,12 @@ The links below the main Google result are automated sitelinks. Google decides t
 - A current home title and description covering software development and digital product design.
 - Separate titles, descriptions, canonical URLs, and social metadata for About Us, Our Services, Our Projects, Contact Us, FAQs, individual services, and published project pages.
 - Correct canonical domain: https://www.versanex.site.
-- Sitemap at /sitemap.xml listing current public pages, six services, and published projects. Project modification dates come from the database; the sitemap reads the current published projects when requested.
+- Sitemap at /sitemap.xml listing current public pages, four services, and published projects. Project modification dates come from the database; the sitemap reads the current published projects when requested.
 - Robots file at /robots.txt pointing to the sitemap and allowing public project data needed to render the site.
 - Organization and WebSite structured data identifying VersaNex.
 - Our Team marked noindex and excluded from the sitemap. FAQs remain searchable.
 - Administrative pages marked noindex.
-- Current service links and permanent redirects for four outdated service URLs.
+- Current service links and permanent redirects for outdated and retired service URLs.
 - Home Services and footer links included in the initial HTML for discovery.
 
 ## After deploying

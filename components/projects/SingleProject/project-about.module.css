@@ -21,6 +21,9 @@
 .appLayer { inset: 0; }
 .image { object-fit: cover; object-position: center top; }
 .appImage { object-fit: contain; object-position: center; }
+.logoFrame { background: #fff; border: 1px solid #e2e4e7; box-shadow: none; }
+.logoImage { object-fit: contain; object-position: center; padding: 14%; }
+.smallVisual .imageFrame.deviceScene, .largeVisual .imageFrame.deviceScene { aspect-ratio: 3 / 2; }
 .imageCaption { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-top: 14px; color: #878c94; font-family: var(--font-geist-mono), monospace; font-size: 9px; line-height: 1.5; letter-spacing: .025em; }
 .imageCaption > span:last-child { color: #6d737e; font-size: 16px; }
 .overviewVisual { grid-column: 1; grid-row: 2; }

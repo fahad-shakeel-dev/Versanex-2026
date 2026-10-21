@@ -1,11 +1,12 @@
 "use client"
 
 import { Star } from "lucide-react"
-import { motion, useReducedMotion } from "framer-motion"
+import { motion } from "framer-motion"
+import { useHydratedReducedMotion } from "@/hooks/use-hydrated-reduced-motion"
 import styles from "./project-details.module.css"
 
 export default function ProjectDetails({ project, reviews = [] }) {
-  const reducedMotion = useReducedMotion()
+  const reducedMotion = useHydratedReducedMotion()
   const reveal = {
     initial: reducedMotion ? false : { opacity: 0, y: 22 },
     whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.2 },

@@ -1,9 +1,12 @@
 "use client"
 
 import { useMemo, useState, useEffect } from "react"
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 import Link from "next/link"
 import { motion } from "framer-motion"
+import { withProjectMedia } from "@/data/project-media"
+import { absoluteUrl } from "@/lib/seo"
+import styles from "./portfolio.module.css"
 
 export default function Portfolio() {
   const [projects, setProjects] = useState([])
@@ -14,7 +17,7 @@ export default function Portfolio() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success && Array.isArray(data.data)) {
-          setProjects(data.data)
+          setProjects(data.data.map(withProjectMedia))
         }
       })
       .catch((err) => { console.error("Error fetching projects:", err) })
@@ -31,7 +34,7 @@ export default function Portfolio() {
     itemListElement: displayProjects.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `/projects/${p.slug}`,
+      url: absoluteUrl(`/projects/${p.slug}`),
       name: p.title,
     })),
   }), [displayProjects])
@@ -61,9 +64,10 @@ export default function Portfolio() {
       <Link href={`/projects/${p.slug}`} className="block">
         <div className="relative aspect-[16/11] w-full overflow-hidden rounded-2xl bg-slate-200 dark:bg-neutral-900 shadow-sm transition-all duration-500 group-hover:shadow-2xl">
           <Image
-            src={p.images?.[0]?.url || "/placeholder.svg"}
-            alt={`${p.title} preview`}
-            fill unoptimized
+            src={p.homeImage?.url || p.images?.[0]?.url || "/placeholder.svg"}
+            alt={p.homeImage?.alt || `${p.title} preview`}
+            fill
+            sizes="(min-width: 1920px) 860px, (min-width: 1101px) calc((100vw - 160px) / 2), (max-width: 767px) calc(100vw - 48px), (max-width: 1279px) 45vw, 560px"
             className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-[1.03]"
             loading="lazy"
           />
@@ -74,21 +78,21 @@ export default function Portfolio() {
             </svg>
           </div>
           {p.category && (
-            <div className="absolute bottom-3.5 right-3.5 z-10 px-3 py-1 rounded-md bg-[#121417]/85 backdrop-blur-md border border-white/10 text-[10px] font-semibold text-white tracking-wider uppercase">
+            <div className={`${styles.badge} absolute bottom-3.5 right-3.5 z-10 px-3 py-1 rounded-md bg-[#121417]/85 backdrop-blur-md border border-white/10 text-[10px] font-semibold text-white tracking-wider uppercase`}>
               {p.category.replace(/-/g, " ")}
             </div>
           )}
         </div>
         <div className="mt-3.5 flex items-start justify-between gap-4">
           <div>
-            <h3 className="text-lg sm:text-xl font-normal text-slate-900 dark:text-white tracking-tight group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors">
+            <h3 className={`${styles.cardTitle} text-lg sm:text-xl font-normal text-slate-900 dark:text-white tracking-tight group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors`}>
               {p.title}
             </h3>
-            <p className="mt-0.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-normal line-clamp-1">
+            <p className={`${styles.cardDescription} mt-0.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-normal line-clamp-1`}>
               {p.description || "Digital Platform & Custom Code"}
             </p>
           </div>
-          <span className="text-[11px] font-mono text-slate-400 dark:text-slate-500 font-normal pt-1 shrink-0">
+          <span className={`${styles.year} text-[11px] font-mono text-slate-500 dark:text-slate-500 font-normal pt-1 shrink-0`}>
             {p.year || "2026"}
           </span>
         </div>
@@ -97,32 +101,32 @@ export default function Portfolio() {
   )
 
   return (
-    <section id="work" aria-labelledby="work-heading" className="py-20 sm:py-28 bg-[#F8F9FA] dark:bg-[#0B0C0E] text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300 antialiased">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+    <section id="work" aria-labelledby="work-heading" className={`${styles.section} py-20 sm:py-28 bg-[#F8F9FA] dark:bg-[#0B0C0E] text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300 antialiased`}>
+      <div className={`${styles.frame} mx-auto max-w-7xl px-6 lg:px-12`}>
 
         <motion.div
           initial="hidden" whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={headerVariants}
-          className="mb-16 sm:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6"
+          className={`${styles.header} mb-16 sm:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6`}
         >
-          <div className="max-w-2xl">
+          <div className={`${styles.headingBlock} max-w-2xl`}>
             <div className="flex items-center gap-2 mb-3">
               <span className="h-1.5 w-1.5 rounded-full bg-slate-900 dark:bg-white" />
-              <span className="text-[11px] font-mono font-medium uppercase tracking-widest text-slate-500 dark:text-slate-400">OUR PROJECTS</span>
+              <span className={`${styles.label} text-[11px] font-mono font-medium uppercase tracking-widest text-slate-500 dark:text-slate-400`}>OUR PROJECTS</span>
             </div>
-            <h2 id="work-heading" className="text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.08]">
+            <h2 id="work-heading" className={`${styles.heading} text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.08]`}>
               Selected Works &amp;<br />Digital Experiences.
             </h2>
           </div>
-          <p className="max-w-xs text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal md:pb-1">
+          <p className={`${styles.intro} max-w-xs text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal md:pb-1`}>
             A curated collection of modern web platforms, bespoke applications, and high-performance digital products engineered for precision.
           </p>
         </motion.div>
 
         <div className="min-h-[400px]">
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14">
+            <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14`}>
               {[...Array(4)].map((_, i) => (
                 <div key={i} className="space-y-4">
                   <div className="aspect-[16/11] rounded-2xl bg-slate-200 dark:bg-neutral-800 animate-pulse" />
@@ -131,11 +135,11 @@ export default function Portfolio() {
               ))}
             </div>
           ) : displayProjects.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start">
-              <div className="flex flex-col gap-12 sm:gap-16">
+            <div className={`${styles.grid} grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start`}>
+              <div className={`${styles.column} flex flex-col gap-12 sm:gap-16`}>
                 {leftColumn.map((p, i) => <ProjectCard key={p.slug || i} p={p} index={i} variants={leftCardVariants} />)}
               </div>
-              <div className="flex flex-col gap-12 sm:gap-16 md:pt-20">
+              <div className={`${styles.column} ${styles.rightColumn} flex flex-col gap-12 sm:gap-16 md:pt-20`}>
                 {rightColumn.map((p, i) => <ProjectCard key={p.slug || i} p={p} index={i} variants={rightCardVariants} />)}
               </div>
             </div>
@@ -150,9 +154,9 @@ export default function Portfolio() {
         <motion.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-16 sm:mt-24 flex justify-center"
+          className={`${styles.footer} mt-16 sm:mt-24 flex justify-center`}
         >
-          <Link href="/projects" className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-black hover:bg-[#f2ad08] text-white hover:text-[#141b26] font-medium text-xs tracking-wide shadow-md transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]">
+          <Link href="/projects" className={`${styles.viewAll} inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-black hover:bg-[#f2ad08] text-white hover:text-[#141b26] font-medium text-xs tracking-wide shadow-md transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]`}>
             View All Projects
           </Link>
         </motion.div>

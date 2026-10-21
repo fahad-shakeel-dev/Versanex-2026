@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, memo } from "react";
-import Image from "next/image";
+import Image from "@/components/optimized-image";
 import Head from "next/head";
 import { BiLogoLinkedinSquare } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";

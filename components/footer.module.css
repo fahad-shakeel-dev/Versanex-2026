@@ -1,0 +1,93 @@
+.columns > * {
+  min-width: 0;
+}
+
+.newsletter input {
+  min-width: 0;
+  flex: 1;
+}
+
+.newsletter button {
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1101px) {
+  .frame {
+    max-width: 1920px;
+    padding-inline: clamp(48px, 3.333333vw, 80px);
+    padding-block: clamp(96px, calc(72.5333px + 2.133333vw), 128px);
+  }
+
+  .columns {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.8fr) minmax(0, 0.85fr) minmax(0, 1.2fr);
+    gap: clamp(48px, calc(24.5333px + 2.133333vw), 80px);
+  }
+
+  .logoRow img {
+    width: clamp(50px, calc(36.8px + 1.2vw), 68px);
+    height: auto;
+  }
+
+  .logoRow > span {
+    font-size: clamp(24px, calc(18.1333px + 0.533333vw), 32px);
+  }
+
+  .columns h3 {
+    font-size: clamp(18px, calc(13.6px + 0.4vw), 24px);
+  }
+
+  .columns p,
+  .columns address,
+  .columns ul {
+    font-size: clamp(14px, calc(11.0667px + 0.266667vw), 18px);
+  }
+
+  .brand > p {
+    max-width: 440px;
+  }
+
+  .newsletter input {
+    font-size: clamp(14px, calc(11.0667px + 0.266667vw), 18px);
+    padding-inline: clamp(12px, calc(9.0667px + 0.266667vw), 16px);
+    padding-block: clamp(8px, calc(5.0667px + 0.266667vw), 12px);
+  }
+
+  .newsletter button {
+    padding-inline: clamp(12px, calc(7.6px + 0.4vw), 18px);
+  }
+
+  .newsletter button svg {
+    width: clamp(16px, calc(13.0667px + 0.266667vw), 20px);
+    height: clamp(16px, calc(13.0667px + 0.266667vw), 20px);
+  }
+
+  .socials {
+    gap: clamp(16px, calc(10.1333px + 0.533333vw), 24px);
+  }
+
+  .socials a {
+    width: clamp(40px, calc(31.2px + 0.8vw), 52px);
+    height: clamp(40px, calc(31.2px + 0.8vw), 52px);
+  }
+
+  .socials svg {
+    width: clamp(20px, calc(17.0667px + 0.266667vw), 24px);
+    height: clamp(20px, calc(17.0667px + 0.266667vw), 24px);
+  }
+
+  .divider {
+    margin-block: clamp(40px, calc(28.2667px + 1.066667vw), 56px);
+  }
+
+  .bottom {
+    gap: clamp(12px, calc(3.2px + 0.8vw), 24px);
+    font-size: clamp(14px, calc(11.8px + 0.2vw), 17px);
+  }
+}

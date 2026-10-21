@@ -11,7 +11,7 @@ export default function LegalPage() {
       eyebrow="The details matter"
       title="Privacy policy."
       intro="How we collect, use, and protect your information when you visit our website or work with VersaNex."
-      lastUpdated="October 2024"
+      lastUpdated="October 7, 2026"
       sections={privacyData.map((section, index) => ({ ...section, id: "privacy-policy-section-" + (index + 1) }))}
       contactTitle="Questions about your privacy?"
       contactCopy="Get in touch with our team for clarification about this policy or how your information is handled."

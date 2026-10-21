@@ -1,17 +1,22 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 import Link from "next/link"
 import gsap from "gsap"
-import { ArrowUpRight, Code2, Globe, Layers3, Smartphone, PenTool, ShoppingBag } from "lucide-react"
+import { ArrowUpRight, Code2, Smartphone, PenTool, ShoppingBag } from "lucide-react"
 import { services } from "@/data/services"
 import ProcessFlow from "@/components/services/process-flow"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import styles from "./services.module.css"
 
-const serviceIcons = [Code2, Globe, Layers3, Smartphone, PenTool, ShoppingBag]
+const serviceIcons = {
+  "custom-software-development": Code2,
+  "mobile-app-development": Smartphone,
+  "ui-ux-design": PenTool,
+  "ecommerce-development": ShoppingBag,
+}
 
 export default function ServicesPage() {
   const pageRef = useRef(null)
@@ -72,12 +77,12 @@ export default function ServicesPage() {
           </div>
           <div className={styles.grid}>
             {services.map((service, index) => {
-              const Icon = serviceIcons[index] || Code2
+              const Icon = serviceIcons[service.slug] || Code2
               return (
                 <article key={service.id} data-service-reveal className={styles.card}>
                   <Link href={`/services/${service.slug}`} className={styles.cardLink} aria-labelledby={`service-title-${service.id}`}>
                     <div className={styles.imageWrap}>
-                      <Image src={service.image} alt="" fill unoptimized
+                      <Image src={service.image} alt="" fill
                         sizes="(max-width: 767px) 100vw, (max-width: 1500px) 50vw, 680px"
                         className={styles.image} />
                       <div className={styles.imageOverlay} />

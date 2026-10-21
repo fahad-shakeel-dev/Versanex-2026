@@ -3,6 +3,7 @@
 import { NextResponse } from "next/server";
 import dbConnect from "../../../lib/dbConnect";
 import Project from "../../../lib/model/Projects";
+import { withPublicProjects } from "@/data/project-media";
 
 function createSlug(title) {
   return title
@@ -52,7 +53,7 @@ export async function GET(req) {
       createdAt: p.createdAt ? p.createdAt.toISOString().split("T")[0] : null,
     }));
 
-    return NextResponse.json({ success: true, data: formatted }, { status: 200 });
+    return NextResponse.json({ success: true, data: showAll ? formatted : withPublicProjects(formatted) }, { status: 200 });
   } catch (err) {
     console.error("Error fetching projects:", err);
     return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });

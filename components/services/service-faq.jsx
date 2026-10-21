@@ -9,21 +9,21 @@ export default function FAQSection({ faqs }) {
   const defaultFaqs = [
     {
       number: "01",
-      question: "What does Broshtech develop?",
+      question: "What does VersaNex develop?",
       answer:
-        "Broshtech specializes in custom web applications, SaaS platforms, mobile apps, and scalable digital solutions tailored to modern business requirements.",
+        "VersaNex specializes in custom software development, mobile app development, UI/UX design, and e-commerce solutions.",
     },
     {
       number: "02",
       question: "How does the development process work?",
       answer:
-        "We follow an agile methodology starting with discovery, moving through architecture design, bi-weekly development sprints, rigorous QA testing, and seamless deployment.",
+        "We start with discovery, define the design and technical approach, develop the agreed features, test the product, and prepare it for launch.",
     },
     {
       number: "03",
       question: "How long does software development take?",
       answer:
-        "Timeline depends on project complexity. Standard MVP or marketing web apps usually take 4 to 8 weeks, while enterprise software platforms range from 3 to 6 months.",
+        "The timeline depends on project complexity, features, and integrations. We agree the scope, milestones, and delivery schedule with you before development begins.",
     },
     {
       number: "04",
@@ -33,15 +33,15 @@ export default function FAQSection({ faqs }) {
     },
     {
       number: "05",
-      question: "Does Broshtech work with international clients?",
+      question: "Does VersaNex work with international clients?",
       answer:
         "Yes, we work with startups, businesses, and agency partners globally across North America, Europe, Australia, and the Middle East.",
     },
     {
       number: "06",
-      question: "Can Broshtech design and develop the entire product?",
+      question: "Can VersaNex design and develop the entire product?",
       answer:
-        "Absolutely. We offer end-to-end services including brand identity, UI/UX research & design, frontend & backend engineering, cloud infrastructure, and post-launch maintenance.",
+        "Absolutely. We offer end-to-end services including UI/UX design and development for custom software, mobile apps, and e-commerce products.",
     },
   ]
 

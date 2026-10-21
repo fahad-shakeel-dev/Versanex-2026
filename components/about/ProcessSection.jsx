@@ -770,7 +770,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 
 // ==========================================
 // STEP DATA
@@ -778,9 +778,10 @@ import Image from "next/image"
 const STEPS = [
     {
         id: "01",
-        title: "DISCOVER",
+        title: "Discover",
         desc: "We learn your business, your buyer, and what the brand and site need to do.",
-        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop",
+        image: "/about-flow/discover.webp",
+        imageAlt: "Brand strategy notebook, research cards and analytics tablet on a studio desk",
         fraction: 0.12,
         x: 200,
         y: 130,
@@ -793,9 +794,10 @@ const STEPS = [
     },
     {
         id: "02",
-        title: "DESIGN",
+        title: "Design",
         desc: "We shape the brand and the site, testing directions until it is right.",
-        image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1200&auto=format&fit=crop",
+        image: "/about-flow/design.webp",
+        imageAlt: "Website wireframes and polished designs alongside brand identity explorations",
         fraction: 0.38,
         x: 600,
         y: 50,
@@ -808,9 +810,10 @@ const STEPS = [
     },
     {
         id: "03",
-        title: "BUILD",
+        title: "Build",
         desc: "We build it in Framer, fast and clean, ready for your team to run.",
-        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop",
+        image: "/about-flow/build.webp",
+        imageAlt: "Laptop displaying development code and a website preview with a matching mobile site",
         fraction: 0.64,
         x: 1000,
         y: 130,
@@ -822,9 +825,10 @@ const STEPS = [
     },
     {
         id: "04",
-        title: "LAUNCH",
+        title: "Launch",
         desc: "We launch, hand over, and stay on to help it grow.",
-        image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1200&auto=format&fit=crop",
+        image: "/about-flow/launch.webp",
+        imageAlt: "Completed website across desktop and mobile with a growth analytics dashboard",
         fraction: 0.88,
         x: 1400,
         y: 50,
@@ -849,19 +853,19 @@ const NODE_RADIUS = 22 // Half of 44px circle width
 // ==========================================
 function MobileProcess() {
     return (
-        <section className="relative bg-[#F5F5F7] text-[#111111] antialiased lg:hidden pb-16 pt-12 sm:pt-16 px-6 sm:px-12">
+        <section className="relative bg-[#F5F5F7] text-[#1b2b40] antialiased lg:hidden pb-16 pt-12 sm:pt-16 px-6 sm:px-12">
             <div className="w-full mx-auto mb-12">
                 <div className="flex flex-col sm:flex-row justify-between items-start mb-4 gap-4">
-                    <h2 className="text-6xl sm:text-7xl font-semibold tracking-tighter leading-none text-black">
-                        FLOW
+                    <h2 className="text-4xl sm:text-5xl font-normal tracking-tight leading-[1.08] text-[#1b2b40]">
+                        Flow
                     </h2>
-                    <p className="text-sm sm:text-base text-neutral-600 max-w-xs font-normal leading-relaxed sm:pt-1">
+                    <p className="text-sm sm:text-base text-[#556377] max-w-xs font-normal leading-relaxed sm:pt-1">
                         How we turn a brief into a brand and a site that performs.
                     </p>
                 </div>
-                <div className="flex justify-between items-center border-t border-neutral-300 pt-2.5 text-[11px] font-mono tracking-widest text-neutral-600 uppercase">
-                    <span>PROCESS: <strong className="font-semibold text-black">4 STEPS</strong></span>
-                    <span>DURATION: <strong className="font-semibold text-black">~1 MONTH</strong></span>
+                <div className="flex justify-between items-center border-t border-neutral-300 pt-2.5 text-xs font-mono font-normal tracking-wider text-[#556377] uppercase">
+                    <span>PROCESS: <strong className="font-medium text-[#1b2b40]">4 STEPS</strong></span>
+                    <span>DURATION: <strong className="font-medium text-[#1b2b40]">~1 MONTH</strong></span>
                 </div>
             </div>
 
@@ -869,16 +873,16 @@ function MobileProcess() {
                 {STEPS.map((step, index) => (
                     <div key={step.id} className="flex flex-col">
                         <div className="w-full h-40 relative rounded-2xl overflow-hidden mb-5 border border-neutral-200">
-                            <Image src={step.image} alt={step.title} fill className="object-cover" />
+                            <Image src={step.image} alt={step.imageAlt} fill className="object-cover" sizes="(max-width: 640px) 100vw, 90vw" />
                         </div>
-                        <h3 className="text-3xl font-bold tracking-tight text-black mb-3 uppercase">
+                        <h3 className="text-2xl sm:text-3xl font-normal tracking-tight leading-[1.15] text-[#1b2b40] mb-3">
                             {step.title}
                         </h3>
-                        <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mb-6 max-w-sm">
+                        <p className="text-[#556377] text-sm sm:text-base leading-relaxed font-normal mb-6 max-w-sm">
                             {step.desc}
                         </p>
                         <div className="mt-auto">
-                            <span className="text-xs font-mono font-bold text-black block mb-2">
+                            <span className="text-xs font-mono font-medium text-[#1b2b40] block mb-2">
                                 {Math.round(((index + 1) / STEPS.length) * 100)}%
                             </span>
                             <div
@@ -1040,16 +1044,16 @@ function DesktopRoadProcess() {
     return (
         <>
             <style>{`
-        #process-road { position: relative; height: 380vh; font-family: "Inter", "Helvetica Neue", Arial, sans-serif; color: #1c1a17; background-color: #F5F5F7; }
+        #process-road { position: relative; height: 380vh; font-family: inherit; color: #1b2b40; background-color: #F5F5F7; }
         #process-road .pr-stage { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2vh 0; }
         #process-road .pr-card { width: 96vw; max-width: 1600px; height: 90vh; max-height: 850px; background: #fff; border-radius: 28px; padding: clamp(1.5rem, 3vh, 3rem) 3vw; box-shadow: 0 30px 80px -40px rgba(28,26,23,.15); display: flex; flex-direction: column; overflow: hidden; }
 
         /* Section Header */
         #process-road .pr-header { margin-bottom: 2rem; flex-shrink: 0; width: 100%; }
         #process-road .pr-title-row { display: flex; justify-content: space-between; align-items: center; gap: 2rem; margin-bottom: 1rem; width: 100%; }
-        #process-road .pr-title-row h2 { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1; color: #000; margin: 0; flex-shrink: 0; }
-        #process-road .pr-title-row p { font-size: 0.95rem; color: #666; max-width: 240px; font-weight: 400; line-height: 1.4; margin: 0; text-align: left; }
-        #process-road .pr-meta-row { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #e5e5e5; padding-top: 0.75rem; font-family: monospace; font-size: 0.75rem; color: #666; text-transform: uppercase; letter-spacing: 0.05em; width: 100%; }
+        #process-road .pr-title-row h2 { font-size: clamp(2.5rem, 4vw, 3.75rem); font-weight: 400; letter-spacing: -0.03em; line-height: 1.08; color: #1b2b40; margin: 0; flex-shrink: 0; }
+        #process-road .pr-title-row p { font-size: 1rem; color: #556377; max-width: 240px; font-weight: 400; line-height: 1.65; margin: 0; text-align: left; }
+        #process-road .pr-meta-row { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #e5e5e5; padding-top: 0.75rem; font-family: var(--font-geist-mono); font-size: 0.75rem; font-weight: 400; color: #556377; text-transform: uppercase; letter-spacing: 0.05em; width: 100%; }
 
         /* Main Body Split */
         #process-road .pr-body { flex-grow: 1; display: flex; align-items: center; gap: 4vw; min-height: 0; }
@@ -1073,9 +1077,9 @@ function DesktopRoadProcess() {
         /* Text Captions */
         #process-road .pr-caption-wrap { min-height: 8rem; position: relative; }
         #process-road .pr-caption { animation: pr-rise .4s cubic-bezier(.22,1,.36,1) both; }
-        #process-road .pr-num { display: block; font-size: 2.5rem; font-weight: 800; color: #d1d5db; line-height: 1; margin-bottom: .25rem; font-family: monospace; }
-        #process-road .pr-caption h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: .01em; margin: 0 0 .5rem; color: #111; text-transform: uppercase; }
-        #process-road .pr-caption p { font-size: 0.95rem; line-height: 1.5; color: #666; font-weight: 400; margin: 0; max-width: 28rem; }
+        #process-road .pr-num { display: block; font-size: 2rem; font-weight: 400; color: #556377; line-height: 1; margin-bottom: .25rem; font-family: var(--font-geist-mono); }
+        #process-road .pr-caption h3 { font-size: clamp(1.5rem, 2vw, 2rem); font-weight: 400; letter-spacing: -.02em; line-height: 1.15; margin: 0 0 .75rem; color: #1b2b40; }
+        #process-road .pr-caption p { font-size: 1rem; line-height: 1.65; color: #556377; font-weight: 400; margin: 0; max-width: 28rem; }
         @keyframes pr-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Image Display */
@@ -1084,7 +1088,7 @@ function DesktopRoadProcess() {
         #process-road .pr-image img { transition: transform 3s ease-out; }
         #process-road .pr-image.is-active img { transform: scale(1.04); }
         #process-road .pr-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.4), transparent 40%); pointer-events: none; }
-        #process-road .pr-image-tag { position: absolute; bottom: 20px; left: 20px; z-index: 2; color: #fff; font-size: .75rem; font-family: monospace; display: flex; align-items: center; gap: .5rem; }
+        #process-road .pr-image-tag { position: absolute; bottom: 20px; left: 20px; z-index: 2; color: #fff; font-size: .75rem; font-family: var(--font-geist-mono); display: flex; align-items: center; gap: .5rem; }
       `}</style>
 
             <section id="process-road" className="hidden lg:block" ref={sectionRef}>
@@ -1094,12 +1098,12 @@ function DesktopRoadProcess() {
                         {/* Section Header */}
                         <div className="pr-header">
                             <div className="pr-title-row">
-                                <h2>FLOW</h2>
+                                <h2>Flow</h2>
                                 <p>How we turn a brief into a brand and a site that performs.</p>
                             </div>
                             <div className="pr-meta-row">
-                                <span>PROCESS: <strong className="font-semibold text-black">4 STEPS</strong></span>
-                                <span>DURATION: <strong className="font-semibold text-black">~1 MONTH</strong></span>
+                                <span>PROCESS: <strong className="font-medium text-[#1b2b40]">4 STEPS</strong></span>
+                                <span>DURATION: <strong className="font-medium text-[#1b2b40]">~1 MONTH</strong></span>
                             </div>
                         </div>
 
@@ -1147,7 +1151,7 @@ function DesktopRoadProcess() {
                                     <div key={step.id} className={`pr-image ${index === activeIndex ? "is-active" : ""}`}>
                                         <Image
                                             src={step.image}
-                                            alt={step.title}
+                                            alt={step.imageAlt}
                                             fill
                                             priority={index === 0}
                                             className="object-cover object-center"

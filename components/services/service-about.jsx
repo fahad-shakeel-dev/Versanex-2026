@@ -135,7 +135,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 
 export default function AboutServiceSection({ text, images }) {
   const containerRef = useRef(null)
@@ -272,7 +272,7 @@ export default function AboutServiceSection({ text, images }) {
             >
               <Image
                 src={item.src}
-                alt={item.alt}
+                alt={item.alt || ""}
                 fill
                 sizes="(max-width: 640px) 180px, (max-width: 1024px) 220px, 250px"
                 className="object-cover object-center hover:scale-105 transition-transform duration-500"

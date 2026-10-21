@@ -1,9 +1,10 @@
 "use client"
 
 import { useRef } from "react"
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 import { ArrowUpRight, ArrowDown } from "lucide-react"
-import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion"
+import { motion, useInView, useScroll, useTransform } from "framer-motion"
+import { useHydratedReducedMotion } from "@/hooks/use-hydrated-reduced-motion"
 import { getProjectStory } from "@/data/project-stories"
 import styles from "./project-story.module.css"
 
@@ -46,28 +47,41 @@ function StoryLabel({ children, active }) {
   return <p className={styles.label}><span className={styles.dots} aria-hidden="true">{[0, 1, 2].map(index => <i key={index} data-active={index === active} />)}</span>{children}</p>
 }
 
-function Screenshot({ image, name, mobile, className }) {
-  return <figure className={className}>
+function Screenshot({ image, name, mobile, className, preserveAspect = false }) {
+  const deviceScene = image.url.startsWith("/mockups/fixit/") || image.url.startsWith("/mockups/finance-flow/") || image.url.startsWith("/mockups/callmind-ai/") || image.url.startsWith("/mockups/luxurystay/")
+  return <figure className={`${className} ${deviceScene ? styles.deviceScene : ""}`}
+    style={preserveAspect ? { aspectRatio: `${image.width || 4} / ${image.height || 3}` } : undefined}>
     <Image src={image.url} alt={image.alt || `${name} interface preview`}
-      fill unoptimized sizes="(max-width: 767px) 90vw, 80vw"
+      fill sizes="(max-width: 767px) 90vw, 80vw"
       className={mobile ? styles.appImage : styles.image}
       onError={event => { if (!event.currentTarget.src.endsWith("/placeholder.svg")) event.currentTarget.src = "/placeholder.svg" }} />
   </figure>
 }
 
 export default function ProjectStory({ project }) {
-  const reducedMotion = useReducedMotion()
+  const reducedMotion = useHydratedReducedMotion()
   const story = getProjectStory(project)
   const unique = new Map()
   ;(project.images || []).forEach(image => {
     const url = typeof image === "string" ? image : image?.url
-    if (typeof url === "string" && url.trim() && !unique.has(url)) unique.set(url, { url, alt: image?.alt })
+    if (typeof url === "string" && url.trim() && !unique.has(url)) unique.set(url, { url, alt: image?.alt, width: image?.width, height: image?.height })
   })
   const images = [...unique.values()]
   const preview = images[3] || images[0]
-  const gallery = [images[4] || images[1], images[5] || images[0], images[6] || images[2]].filter(Boolean)
+  const gallerySecondImage = project.slug === "food-delivery-web-app"
+    ? { url: "/mockups/Indus&Olive/laptop-Mockup.png", alt: "Indus & Olive restaurant website in a laptop mockup" }
+    : images[5] || images[0]
+  const galleryThirdImage = project.slug === "food-delivery-web-app"
+    ? { url: "/mockups/Indus&Olive/foodie_admin_monitor_mockup.png", alt: "Indus & Olive restaurant admin panel in a monitor mockup" }
+    : images[6] || images[2]
+  const gallery = (project.galleryImages || [images[4] || images[1], gallerySecondImage, galleryThirdImage]).filter(Boolean)
     .filter((image, index, items) => items.findIndex(item => item.url === image.url) === index)
-  const closingImage = images[7]
+  const isCallMind = project.slug === "callmind-ai-voice-calling-platform"
+  const isIndusOlive = project.slug === "food-delivery-web-app"
+  const hasPhoneScenes = project.slug === "fixit-your-ai-powered-home-services-companion" || project.slug === "finance-flow-finance-management-system" || project.slug === "callmind-ai-voice-calling-platform" || project.slug === "luxurystay"
+  const closingImage = isIndusOlive
+    ? { url: "/mockups/Indus&Olive/all-mockup.png", alt: "Indus & Olive restaurant website across phone, laptop, and tablet mockups" }
+    : images[7]
   const mobile = project.category === "mobile-app-development"
   const liveLink = /^https?:\/\//i.test(project.liveLink || "") ? project.liveLink : null
   const galleryId = `project-story-gallery-${project.slug || "preview"}`
@@ -92,8 +106,8 @@ export default function ProjectStory({ project }) {
           </div>
 
           {preview && (
-            <ScrollFade className={styles.previewWrap} reducedMotion={reducedMotion}>
-              <Screenshot image={preview} name={story.name} mobile={mobile} className={styles.preview} />
+            <ScrollFade className={`${styles.previewWrap} ${isCallMind ? styles.callMindPreview : ""}`} reducedMotion={reducedMotion}>
+              <Screenshot image={preview} name={story.name} mobile={mobile} className={styles.preview} preserveAspect={isCallMind} />
               <div className={styles.previewCaption}>
                 <div><h3>{story.name}</h3><p>{project.subCategory || (mobile ? "Mobile application" : "Digital experience")}</p></div>
                 {liveLink
@@ -115,7 +129,7 @@ export default function ProjectStory({ project }) {
       <section id={galleryId} className={styles.lightSection} aria-label="Project gallery and key takeaways">
         <div className={styles.inner}>
           {!!gallery.length && (
-            <div className={`${styles.gallery} ${gallery.length < 3 ? styles.shortGallery : ""}`}>
+            <div className={`${styles.gallery} ${gallery.length < 3 ? styles.shortGallery : ""} ${hasPhoneScenes ? styles.deviceGallery : ""} ${isCallMind ? styles.balancedGallery : ""}`}>
               {gallery.map((image, index) => (
                 <ScrollFade key={image.url} className={index === 0 ? styles.galleryMain : styles.galleryDetail} reducedMotion={reducedMotion}>
                   <Screenshot image={image} name={story.name} mobile={mobile} className={styles.galleryImage} />
@@ -130,7 +144,7 @@ export default function ProjectStory({ project }) {
               {!!story.features.length && <ol className={styles.featureList}>{story.features.map((feature, index) => <li key={feature}><span>{String(index + 1).padStart(2, "0")}</span>{feature}</li>)}</ol>}
             </ScrollFade>
           </div>
-          {closingImage && <ScrollFade reducedMotion={reducedMotion}><Screenshot image={closingImage} name={story.name} mobile={mobile} className={styles.closingImage} /></ScrollFade>}
+          {closingImage && <ScrollFade reducedMotion={reducedMotion}><Screenshot image={closingImage} name={story.name} mobile={mobile} className={`${styles.closingImage} ${isIndusOlive ? styles.allMockupsImage : ""}`} /></ScrollFade>}
         </div>
       </section>
     </>

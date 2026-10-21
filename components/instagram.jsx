@@ -59,21 +59,18 @@ export default function InstagramSection() {
     script.setAttribute("fetchpriority", "low");
     document.body.appendChild(script);
 
-    // Ensure generated iframes have title attribute for accessibility
-    const interval = setInterval(() => {
-      const iframes = document.querySelectorAll("iframe.instagram-media");
-      iframes.forEach((iframe, index) => {
-        if (!iframe.getAttribute("title")) {
-          iframe.setAttribute("title", `Instagram post embed ${index + 1}`);
-        }
+    // Label new frames as Instagram creates them, without repeated polling.
+    const labelFrames = () => {
+      sectionRef.current?.querySelectorAll("iframe.instagram-media").forEach((iframe, index) => {
+        if (!iframe.getAttribute("title")) iframe.title = instagramPosts[index]?.title || "VersaNex Instagram post";
       });
-    }, 1000);
-
-    const timeout = setTimeout(() => clearInterval(interval), 10000);
-
+    };
+    const observer = new MutationObserver(labelFrames);
+    if (sectionRef.current) observer.observe(sectionRef.current, { childList: true, subtree: true });
+    script.addEventListener("load", labelFrames);
     return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
+      observer.disconnect();
+      script.removeEventListener("load", labelFrames);
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
@@ -97,7 +94,7 @@ export default function InstagramSection() {
           className="mx-5 flex flex-col md:flex-row items-start justify-between gap-6 md:items-end"
         >
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold tracking-wider text-[#f2ad08] uppercase">
+            <p className="text-sm font-semibold tracking-wider text-[#946500] uppercase">
               Instagram Reels
             </p>
             <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
@@ -113,7 +110,7 @@ export default function InstagramSection() {
             href="https://www.instagram.com/versanexinc/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 rounded-full border border-[#f2ad08] px-6 py-2 text-sm font-medium text-[#f2ad08] transition-all hover:bg-[#f2ad08] hover:text-white"
+            className="group inline-flex items-center gap-2 rounded-full border border-[#f2ad08] px-6 py-2 text-sm font-medium text-[#946500] transition-all hover:bg-[#f2ad08] hover:text-[#141b26]"
           >
             Follow us on Instagram
             <svg

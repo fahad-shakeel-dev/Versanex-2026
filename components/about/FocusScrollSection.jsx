@@ -174,72 +174,77 @@
 
 "use client"
 
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 
 const focusItems = [
   {
     id: "01",
-    title: "STRATEGIC BRAND IDENTITY",
+    title: "Web design & development",
     description:
-      "STRATEGY, POSITIONING, AND VISUAL SYSTEMS DESIGNED TO MAKE YOUR BRAND DISTINCTIVE, VALUABLE AND MEMORABLE.",
+      "We design and build fast, responsive websites for brands, turning your identity into a clear online experience that helps visitors become customers.",
     image:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200&auto=format&fit=crop",
-    details: ["BRANDING", "STRATEGY", "IDENTITY", "ART DIRECTION"],
+      "/about-services/web-design.webp",
+    imageAlt: "Branded website displayed on a laptop and smartphone",
+    details: ["BRAND WEBSITES", "WEB DESIGN", "DEVELOPMENT", "RESPONSIVE"],
   },
   {
     id: "02",
-    title: "WEB DESIGN & DEV",
+    title: "Custom software development",
     description:
-      "MODERN, RESPONSIVE, AND HIGH-IMPACT DIGITAL EXPERIENCES DESIGNED TO ENGAGE PEOPLE AND MOVE BRANDS FORWARD.",
+      "We build web applications, SaaS products and customer portals around your business, with the features, integrations and flexibility your team needs.",
     image:
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop",
-    details: ["WEBSITE", "UX/UI", "FRAMER", "DIGITAL", "WEBFLOW"],
+      "/about-flow/build.webp",
+    imageAlt: "Custom application development with code and a live website preview",
+    details: ["WEB APPS", "SAAS", "CUSTOMER PORTALS", "API INTEGRATIONS"],
   },
   {
     id: "03",
-    title: "3D MOTION & ANIMATION",
+    title: "Interactive & 3D websites",
     description:
-      "CINEMATIC MOTION, ANIMATION, AND VISUAL STORIES THAT BRING IDEAS TO LIFE AND CREATE STRONGER CONNECTIONS.",
+      "We bring websites to life with interactive 3D elements, scroll animations and motion effects, keeping each experience responsive, easy to use and focused on your brand.",
     image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop",
-    details: ["MOTION", "ANIMATION", "3D", "VIDEO", "CAMPAIGN"],
+      "/about-flow/design.webp",
+    imageAlt: "Website design with architectural visuals and interactive layout concepts",
+    details: ["3D WEBSITES", "SCROLL ANIMATIONS", "INTERACTIONS", "WEB EFFECTS"],
   },
   {
     id: "04",
-    title: "CREATIVE DIRECTION",
+    title: "Business systems & automation",
     description:
-      "FROM CONCEPT TO EXECUTION, WE SHAPE VISUAL LANGUAGES THAT GIVE EVERY BRAND A DISTINCTIVE POINT OF VIEW.",
+      "We develop dashboards, management systems and automated workflows that connect your tools, reduce repetitive tasks and give your team a clearer view of the business.",
     image:
-      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1200&auto=format&fit=crop",
-    details: ["CONCEPT", "ART DIRECTION", "CONTENT", "DASHBOARD"],
+      "/about-flow/discover.webp",
+    imageAlt: "Workflow planning diagrams and a business analytics dashboard",
+    details: ["DASHBOARDS", "MANAGEMENT SYSTEMS", "AUTOMATION", "INTEGRATIONS"],
   },
   {
     id: "05",
-    title: "FULL DIGITAL EXPERIENCE",
+    title: "Ecommerce platforms",
     description:
-      "IMMERSIVE DIGITAL EXPERIENCES THAT COMBINE DESIGN, TECHNOLOGY, AND INTERACTION TO LEAVE A LASTING IMPRESSION.",
+      "We build online stores with product catalogs, payment integrations and order management, making it easier for customers to shop and for your team to run the business.",
     image:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop",
-    details: ["BRANDING", "STRATEGY", "IDENTITY", "ART DIRECTION"],
+      "/about-services/digital-experience.webp",
+    imageAlt: "Coordinated digital interfaces displayed across a desktop, tablet and smartphone",
+    details: ["ONLINE STORES", "PAYMENTS", "PRODUCT CATALOGS", "ORDER MANAGEMENT"],
   },
 ]
 
 export default function FocusScrollSection() {
   return (
-    <section className="relative bg-[#F4F4F4] text-black px-6 sm:px-12 lg:px-20 py-16 min-h-screen">
+    <section className="relative bg-[#F4F4F4] text-[#1b2b40] px-6 sm:px-12 lg:px-20 py-16 min-h-screen">
       {/* Header Section */}
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center mb-12 pb-6 border-b border-neutral-300/80">
-        <div className="flex items-center gap-3">
-          <span className="text-red-500 text-xl font-bold">✶</span>
-          <span className="text-xs tracking-widest uppercase text-neutral-600 font-semibold">
+        <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-3">
+          <span aria-hidden="true" className="text-[#f2ad08] text-xl font-normal">✶</span>
+          <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-[#556377]">
             OUR SERVICES
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight ml-4 uppercase text-black">
-            WHAT WE DO
+          <h2 className="basis-full sm:basis-auto text-[clamp(2.25rem,4vw,3.75rem)] font-normal tracking-tight sm:ml-3 leading-[1.08] text-[#1b2b40]">
+            What we do
           </h2>
         </div>
-        <p className="text-neutral-500 text-sm mt-3 md:mt-0 font-normal tracking-wide">
-          we build bold brands that matter most.
+        <p className="text-[#556377] text-sm sm:text-base mt-3 md:mt-0 font-normal leading-relaxed">
+          We build websites and software that move your business forward.
         </p>
       </div>
 
@@ -261,7 +266,7 @@ export default function FocusScrollSection() {
                 
                 {/* 1. ID Badge */}
                 <div className="lg:col-span-1 self-start">
-                  <span className="inline-block bg-black text-white font-bold text-sm px-3.5 py-2 rounded-sm">
+                  <span className="inline-block bg-black text-white font-mono font-normal text-sm px-3.5 py-2 rounded-sm">
                     {item.id}
                   </span>
                 </div>
@@ -270,7 +275,7 @@ export default function FocusScrollSection() {
                 <div className="lg:col-span-4 w-full h-[220px] sm:h-[250px] relative rounded-sm overflow-hidden bg-neutral-200 border border-neutral-300/40">
                   <Image
                     src={item.image}
-                    alt={item.title}
+                    alt={item.imageAlt}
                     fill
                     className="object-cover object-center"
                     sizes="(max-width: 1024px) 100vw, 33vw"
@@ -278,25 +283,25 @@ export default function FocusScrollSection() {
                 </div>
 
                 {/* 3. Title & Description */}
-                <div className="lg:col-span-4 flex flex-col justify-start pr-2">
-                  <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-3 text-black uppercase">
+                <div className="min-w-0 lg:col-span-4 flex flex-col justify-start pr-2">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight leading-[1.15] mb-3 text-[#1b2b40]">
                     {item.title}
                   </h3>
-                  <p className="text-xs sm:text-[13px] text-neutral-600 leading-relaxed uppercase font-medium tracking-wide max-w-[380px]">
+                  <p className="text-sm sm:text-base text-[#556377] leading-relaxed font-normal max-w-[380px]">
                     {item.description}
                   </p>
                 </div>
 
                 {/* 4. Categories */}
                 <div className="lg:col-span-3 flex flex-col items-start space-y-2.5">
-                  <span className="text-[11px] font-bold tracking-widest text-neutral-500 uppercase">
+                  <span className="text-[11px] font-mono font-medium tracking-widest text-[#556377] uppercase">
                     CATEGORIES
                   </span>
                   <div className="flex flex-wrap gap-2">
                     {item.details.map((detail, idx) => (
                       <span
                         key={idx}
-                        className="bg-white text-black border border-neutral-200/80 text-[11px] font-bold px-3 py-1.5 rounded-sm uppercase tracking-wider shadow-xs"
+                        className="bg-white text-[#1b2b40] border border-neutral-200/80 text-[11px] font-mono font-normal px-3 py-1.5 rounded-sm uppercase tracking-wider shadow-xs"
                       >
                         {detail}
                       </span>

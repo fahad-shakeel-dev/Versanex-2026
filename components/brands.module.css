@@ -1,0 +1,77 @@
+@media (min-width: 1101px) {
+  .section {
+    --brand-unit: clamp(1px, calc(0.633333px + 0.033333333vw), 1.5px);
+    padding-block: clamp(112px, calc(88.5333px + 2.133333vw), 144px);
+  }
+
+  .frame {
+    max-width: 1920px;
+    padding-inline: clamp(48px, 3.333333vw, 80px);
+  }
+
+  .header {
+    gap: clamp(32px, calc(8.5333px + 2.133333vw), 64px);
+    margin-bottom: clamp(56px, calc(38.4px + 1.6vw), 80px);
+    padding-bottom: clamp(32px, calc(20.2667px + 1.066667vw), 48px);
+  }
+
+  .headingBlock {
+    min-width: 0;
+    max-width: 1120px;
+  }
+
+  .heading {
+    font-size: clamp(60px, calc(33.6px + 2.4vw), 96px);
+  }
+
+  .label,
+  .techLabel {
+    font-size: clamp(11px, calc(8.8px + 0.2vw), 14px);
+  }
+
+  .intro {
+    max-width: clamp(384px, calc(313.6px + 6.4vw), 480px);
+  }
+
+  .intro p {
+    font-size: clamp(14px, calc(11.0667px + 0.266667vw), 18px);
+  }
+
+  .intro > span {
+    font-size: clamp(12px, calc(9.0667px + 0.266667vw), 16px);
+  }
+
+  .arc .card {
+    width: calc(130 * var(--brand-unit));
+    height: calc(78 * var(--brand-unit));
+    border-radius: calc(16 * var(--brand-unit));
+  }
+
+  .arc .card img {
+    padding: calc(8 * var(--brand-unit));
+  }
+
+  .arc .brandName {
+    font-size: calc(11 * var(--brand-unit));
+  }
+
+  .connector {
+    width: calc(6 * var(--brand-unit));
+    height: calc(6 * var(--brand-unit));
+    margin-top: calc(6 * var(--brand-unit));
+  }
+
+  .techSection {
+    padding-top: clamp(40px, calc(22.4px + 1.6vw), 64px);
+    padding-bottom: clamp(24px, calc(12.2667px + 1.066667vw), 40px);
+  }
+
+  .marquee {
+    gap: clamp(56px, calc(32.5333px + 2.133333vw), 88px);
+  }
+
+  .techLogo {
+    width: clamp(144px, calc(91.2px + 4.8vw), 216px);
+    height: clamp(48px, calc(30.4px + 1.6vw), 72px);
+  }
+}

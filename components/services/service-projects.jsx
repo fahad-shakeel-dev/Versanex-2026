@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
 
 export default function WorksSection({ projects }) {

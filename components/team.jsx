@@ -6,7 +6,7 @@ import SectionHeading from "./section-heading"
 import { BiLogoLinkedinSquare } from "react-icons/bi"
 import { MdEmail } from "react-icons/md"
 import { FiArrowRight } from "react-icons/fi"
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 
 const team = [
   {

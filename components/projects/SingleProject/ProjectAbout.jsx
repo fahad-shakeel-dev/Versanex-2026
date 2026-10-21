@@ -1,8 +1,9 @@
 "use client"
 
 import { useRef } from "react"
-import Image from "next/image"
-import { motion, useInView, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion"
+import Image from "@/components/optimized-image"
+import { motion, useInView, useScroll, useSpring, useTransform } from "framer-motion"
+import { useHydratedReducedMotion } from "@/hooks/use-hydrated-reduced-motion"
 import styles from "./project-about.module.css"
 
 const ease = [0.22, 1, 0.36, 1]
@@ -19,7 +20,9 @@ export function getAboutImages(images = []) {
   return [gallery[1] || gallery[0], gallery[2] || gallery[0]]
 }
 
-function ProjectImage({ image, name, small = false, mobile, reducedMotion }) {
+function ProjectImage({ image, name, small = false, mobile, logo = false, reducedMotion }) {
+  const deviceScene = image.url.startsWith("/mockups/finance-flow/") || image.url.startsWith("/mockups/callmind-ai/") || image.url.startsWith("/mockups/luxurystay/")
+  const keepFrame = mobile || logo || deviceScene
   const imageRef = useRef(null)
   const { scrollYProgress } = useScroll({ target: imageRef, offset: ["start end", "end start"] })
   const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 28, restDelta: 0.001 })
@@ -28,16 +31,16 @@ function ProjectImage({ image, name, small = false, mobile, reducedMotion }) {
 
   return (
     <div ref={imageRef} className={small ? styles.smallVisual : styles.largeVisual}>
-      <motion.figure className={styles.imageFrame}
+      <motion.figure className={`${styles.imageFrame} ${logo ? styles.logoFrame : ""} ${deviceScene ? styles.deviceScene : ""}`}
         initial={reducedMotion ? false : { opacity: 0, clipPath: "inset(12% 0 12% 0 round 22px)" }}
         whileInView={{ opacity: 1, clipPath: "inset(0% 0 0% 0 round 22px)" }}
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: reducedMotion ? 0 : 1.15, ease }}>
-        <motion.div className={`${styles.imageLayer} ${mobile ? styles.appLayer : ""}`}
-          style={{ y: reducedMotion || mobile ? 0 : y, scale: reducedMotion || mobile ? 1 : scale }}>
+        <motion.div className={`${styles.imageLayer} ${keepFrame ? styles.appLayer : ""}`}
+          style={{ y: reducedMotion || keepFrame ? 0 : y, scale: reducedMotion || keepFrame ? 1 : scale }}>
           <Image src={image.url} alt={image.alt || `${name} project screenshot`}
-            fill unoptimized sizes={small ? "(max-width: 767px) 65vw, 28vw" : "(max-width: 767px) 90vw, 45vw"}
-            className={mobile ? styles.appImage : styles.image}
+            fill sizes={small ? "(max-width: 767px) 65vw, 28vw" : "(max-width: 767px) 90vw, 45vw"}
+            className={logo ? styles.logoImage : mobile || deviceScene ? styles.appImage : styles.image}
             onError={event => {
               if (!event.currentTarget.src.endsWith("/placeholder.svg")) event.currentTarget.src = "/placeholder.svg"
             }} />
@@ -76,10 +79,17 @@ function ScrollParagraph({ text, reducedMotion }) {
 }
 
 export default function ProjectAbout({ project }) {
-  const reducedMotion = useReducedMotion()
-  const [detailImage, overviewImage] = getAboutImages(project.images)
+  const reducedMotion = useHydratedReducedMotion()
+  const [galleryDetailImage, galleryOverviewImage] = getAboutImages(project.images)
+  const overviewImage = project.focusImage || (project.slug === "food-delivery-web-app"
+    ? { url: "/mockups/Indus&Olive/laptop-Mockup.png", alt: "Indus & Olive restaurant website in a laptop mockup" }
+    : galleryOverviewImage)
+  const hasTimeCenterLogo = project.slug === "time-center-modern-watch-retail-website"
+  const detailImage = hasTimeCenterLogo
+    ? { url: "/clients-logo/timecenter..png", alt: "Time Center — Clocks & Watches logo" }
+    : project.logo || galleryDetailImage
   const name = (project.title || "Project").split(/\s+[–—-]\s+/)[0]
-  const paragraphs = (project.description || "").trim().split(/\n\s*\n/).filter(Boolean)
+  const paragraphs = (project.focusDescription || project.description || "").trim().split(/\n\s*\n/).filter(Boolean)
   const mobile = project.category === "mobile-app-development"
   const reveal = {
     initial: reducedMotion ? false : { opacity: 0, y: 24 },
@@ -113,7 +123,7 @@ export default function ProjectAbout({ project }) {
 
           {detailImage && (
             <div className={styles.detailVisual}>
-              <ProjectImage image={detailImage} name={name} small mobile={mobile} reducedMotion={reducedMotion} />
+              <ProjectImage image={detailImage} name={name} small mobile={mobile} logo={hasTimeCenterLogo || !!project.logo} reducedMotion={reducedMotion} />
             </div>
           )}
 

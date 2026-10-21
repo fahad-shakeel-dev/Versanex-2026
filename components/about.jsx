@@ -87,7 +87,7 @@
 "use client"
 
 import { useRef } from "react"
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { FiCheck, FiArrowUpRight } from "react-icons/fi"
@@ -99,7 +99,7 @@ const bullets = [
 ]
 
 const paragraphText =
-  "Broshtech is a software development and digital product design company. We exist to bridge the gap between what if and what's live — building custom web apps, mobile apps, and management systems that help businesses across healthcare, e-commerce, startups, and enterprise move faster and grow smarter."
+  "VersaNex is a software development and digital product design company. We exist to bridge the gap between what if and what's live — building custom web apps, mobile apps, and management systems that help businesses across healthcare, e-commerce, startups, and enterprise move faster and grow smarter."
 
 const imgSrc =
   "https://res.cloudinary.com/dbbbve4y4/image/upload/w_800,h_1000,c_fill,f_auto,q_auto/v1760972371/about-our-studio-culture-and-process_fjhgzg.jpg"
@@ -198,7 +198,7 @@ export default function About() {
             >
               <Image
                 src={imgSrc}
-                alt="Inside the Broshtech studio — our culture and process"
+                alt="Inside the VersaNex studio — our culture and process"
                 fill
                 className="object-cover"
               />
@@ -235,7 +235,7 @@ export default function About() {
           <div className="w-full aspect-[4/3] overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
             <Image
               src="https://res.cloudinary.com/dbbbve4y4/image/upload/w_600,h_450,c_fill,f_auto,q_auto/v1760972371/about-our-studio-culture-and-process_fjhgzg.jpg"
-              alt="Inside the Broshtech studio — our culture and process"
+              alt="Inside the VersaNex studio — our culture and process"
               width={600}
               height={450}
               loading="lazy"

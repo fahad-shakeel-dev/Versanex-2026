@@ -89,7 +89,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 import gsap from "gsap"
 import { FaPlus } from "react-icons/fa"
 

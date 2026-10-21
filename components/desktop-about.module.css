@@ -1,0 +1,32 @@
+/* Scale only the desktop Who We Are panel beyond the reference layout. */
+@media (min-width: 1101px) {
+  .panel {
+    padding-inline: 0;
+  }
+
+  .layout {
+    max-width: 1920px;
+    padding-inline: clamp(64px, 3.333333vw, 80px);
+    gap: clamp(48px, calc(36.2667px + 1.066667vw), 64px);
+  }
+
+  .content {
+    min-width: 0;
+  }
+
+  .label {
+    font-size: clamp(14px, calc(11.8px + 0.2vw), 17px);
+  }
+
+  .heading {
+    font-size: min(clamp(36px, calc(14px + 2vw), 66px), 7vh);
+  }
+
+  .copy {
+    font-size: min(clamp(20px, calc(15.6px + 0.4vw), 26px), 3vh);
+  }
+
+  .cards {
+    max-width: min(clamp(380px, 20vw, 520px), 45vh);
+  }
+}

@@ -658,7 +658,7 @@
 
 "use client";
 import { useState, useEffect, memo, useMemo, useRef } from "react";
-import Image from "next/image";
+import Image from "@/components/optimized-image";
 import { motion } from "framer-motion";
 import { FaPlay, FaPause, FaStop, FaVolumeUp, FaVolumeMute, FaBackward, FaForward } from "react-icons/fa";
 

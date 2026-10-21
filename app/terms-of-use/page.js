@@ -11,7 +11,7 @@ export default function LegalPage() {
       eyebrow="The details matter"
       title="Terms of use."
       intro="The terms that apply when you use our website and services. Please read them carefully before working with VersaNex."
-      lastUpdated="October 2024"
+      lastUpdated="October 7, 2026"
       sections={termsData.map((section, index) => ({ ...section, id: "terms-of-use-section-" + (index + 1) }))}
       contactTitle="Let us clarify the details."
       contactCopy="Have a question about these terms or your project agreement? Our team is here to help."

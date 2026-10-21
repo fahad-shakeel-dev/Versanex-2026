@@ -10,7 +10,7 @@ const SECTIONS = [
         id: "team",
         title: "About - Team",
         subtitle: "Multidisciplinary built for results.",
-        text: "NEXOLA is powered by a team of 12 specialists spanning design, strategy, and analytics, collaborating closely to create measurable, performance-driven digital experiences.",
+        text: "VersaNex is powered by a team of 12 specialists spanning design, strategy, and analytics, collaborating closely to create measurable, performance-driven digital experiences.",
     },
     {
         id: "clients",

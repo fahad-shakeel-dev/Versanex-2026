@@ -15,7 +15,7 @@ export default function ProjectsHero() {
   return (
     <section className={styles.hero} aria-labelledby="projects-hero-heading">
       <h1 id="projects-hero-heading" className={styles.heading}>
-        <span>20+ projects. Broshtech, AI,</span>{" "}
+        <span>20+ projects by VersaNex. AI,</span>{" "}
         <span>enterprise tech, and corporate</span>{" "}
         <span>brands at turning points.</span>
       </h1>

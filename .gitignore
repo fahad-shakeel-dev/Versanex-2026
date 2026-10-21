@@ -5,7 +5,7 @@
 
 # next.js
 /.next/
-/.next-dev/
+/.next-dev*/
 /out/
 
 # production
@@ -26,3 +26,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local browser audit reports and screenshots
+/artifacts/

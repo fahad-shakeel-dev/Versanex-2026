@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import styles from "./projects-gallery.module.css"
@@ -67,7 +67,7 @@ export default function ProjectListRow({ project, number, imageUrl, label }) {
       {preview && createPortal(
         <div ref={previewRef} className={styles.hoverPreview} style={preview} aria-hidden="true">
           <div className={styles.previewImage}>
-            <Image src={imageUrl} alt="" fill unoptimized sizes="288px"
+            <Image src={imageUrl} alt="" fill sizes="288px"
               onError={event => { event.currentTarget.src = "/placeholder.svg" }} />
           </div>
         </div>, document.body

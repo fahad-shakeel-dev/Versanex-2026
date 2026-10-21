@@ -1,87 +1,74 @@
-// Existing page content, preserved during the theme update.
+// Public service FAQs and policy content.
 
 export const faqData = [
   {
-    category: "Website Development",
-    questions: [
+    "category": "Custom Software Development",
+    "questions": [
       {
-        q: "What technologies do you use for website development?",
-        a: "We specialize in modern web technologies including Next.js, React, Node.js, and various databases. We choose the best tech stack based on your project requirements to ensure scalability, performance, and maintainability.",
+        "q": "What custom software can you build?",
+        "a": "We build software around your business workflows, including internal tools, dashboards, customer portals, and integrations. We define the features and technical approach around your goals."
       },
       {
-        q: "How long does a typical website project take?",
-        a: "Project timelines vary based on complexity. A simple website takes 2-4 weeks, while complex applications can take 2-3 months. We provide detailed timelines during the initial consultation.",
+        "q": "Can you improve or extend our existing software?",
+        "a": "We can review your existing system, identify what needs to change, and discuss an approach for new features, integrations, or modernization."
       },
       {
-        q: "Do you provide website maintenance and support?",
-        a: "Yes, we offer comprehensive maintenance packages including updates, security patches, performance optimization, and 24/7 technical support.",
-      },
-    ],
+        "q": "How long does a custom software project take?",
+        "a": "The timeline depends on the features, integrations, and complexity. We discuss the scope, milestones, and delivery schedule with you before development begins."
+      }
+    ]
   },
   {
-    category: "Digital Marketing",
-    questions: [
+    "category": "Mobile App Development",
+    "questions": [
       {
-        q: "What digital marketing services do you offer?",
-        a: "We provide SEO optimization, social media marketing, content marketing, PPC advertising, email marketing, and analytics reporting to help grow your online presence.",
+        "q": "Do you develop apps for iOS and Android?",
+        "a": "We develop mobile apps for iOS and Android. The choice of technology depends on your features, audience, budget, and performance requirements."
       },
       {
-        q: "How do you measure marketing success?",
-        a: "We track KPIs including traffic growth, conversion rates, engagement metrics, ROI, and lead generation. Monthly reports keep you informed of campaign performance.",
+        "q": "Can you connect a mobile app to our existing systems?",
+        "a": "We can integrate your app with compatible APIs, databases, and business systems. We review access requirements and the integration scope during discovery."
       },
       {
-        q: "What is your approach to SEO?",
-        a: "We use white-hat SEO techniques focusing on keyword research, on-page optimization, technical SEO, link building, and content strategy to improve your search rankings organically.",
-      },
-    ],
+        "q": "Do you help with launching a mobile app?",
+        "a": "We can help prepare your app for release and guide you through the submission process. App store approval is determined by the respective platform."
+      }
+    ]
   },
   {
-    category: "E-commerce Solutions",
-    questions: [
+    "category": "UI/UX Design",
+    "questions": [
       {
-        q: "Can you build custom Shopify stores?",
-        a: "We create custom Shopify stores with unique designs, custom functionality, payment integration, inventory management, and marketing automation.",
+        "q": "What is included in your UI/UX design service?",
+        "a": "We design user journeys, wireframes, prototypes, and interfaces for digital products. The deliverables are agreed with you based on the scope of your project."
       },
       {
-        q: "Do you handle WordPress e-commerce setup?",
-        a: "Yes, we set up WooCommerce on WordPress with product catalogs, payment gateways, shipping integration, and customer management systems.",
+        "q": "Can you redesign an existing app or product?",
+        "a": "Yes. We can review the current user experience and design improvements to navigation, layouts, and interactions while keeping your business goals in focus."
       },
       {
-        q: "What payment methods do you support?",
-        a: "We integrate with Stripe, PayPal, Square, and other major payment processors to give your customers flexible payment options.",
-      },
-    ],
+        "q": "Can you provide designs for our development team?",
+        "a": "We can prepare design files, interactive prototypes, and interface specifications so your developers can understand and implement the approved design."
+      }
+    ]
   },
   {
-    category: "Content & Design",
-    questions: [
+    "category": "E-commerce",
+    "questions": [
       {
-        q: "What content writing services do you provide?",
-        a: "We offer blog writing, product descriptions, website copy, email campaigns, social media content, and SEO-optimized articles tailored to your audience.",
+        "q": "Can you build a custom online store?",
+        "a": "We develop e-commerce stores with product catalogs, shopping carts, checkout flows, and order management. We agree the platform and features with you before development."
       },
       {
-        q: "Do you provide graphic design services?",
-        a: "Yes, we create logos, branding materials, social media graphics, infographics, banners, and custom illustrations for your brand.",
+        "q": "Can you integrate payments and shipping?",
+        "a": "We can integrate compatible payment providers and shipping services. Availability depends on your store platform, business location, and provider requirements."
       },
       {
-        q: "Can you edit and produce videos?",
-        a: "We provide video editing, motion graphics, product videos, testimonial videos, and promotional content creation with professional quality.",
-      },
-    ],
-  },
-  {
-    category: "Quality Assurance",
-    questions: [
-      {
-        q: "What QA testing do you perform?",
-        a: "We conduct functional testing, performance testing, security testing, cross-browser compatibility testing, and user acceptance testing.",
-      },
-      {
-        q: "How do you ensure software quality?",
-        a: "We follow industry best practices including automated testing, manual testing, code reviews, and continuous integration to maintain high quality standards.",
-      },
-    ],
-  },
+        "q": "Can you improve an existing e-commerce store?",
+        "a": "We can review your store and discuss improvements to the shopping experience, performance, and integrations based on your needs."
+      }
+    ]
+  }
 ]
 
 export const privacyData = [
@@ -93,7 +80,7 @@ export const privacyData = [
   {
     title: "2. How We Use Your Information",
     content:
-      "We use the information we collect to provide, maintain, and improve our services, process transactions, send transactional and promotional communications, respond to your inquiries, and comply with legal obligations. We use your information to deliver website development, digital marketing, content writing, e-commerce solutions, video editing, graphic design, and software quality assurance services.",
+      "We use the information we collect to provide, maintain, and improve our services, process transactions, send transactional and promotional communications, respond to your inquiries, and comply with legal obligations. We use your information to deliver custom software development, mobile app development, UI/UX design, and e-commerce services.",
   },
   {
     title: "3. Information Sharing",
@@ -191,7 +178,7 @@ export const termsData = [
   {
     title: "9. Service Delivery",
     content:
-      "VersaNex commits to delivering high-quality services including website development, digital marketing, content writing, e-commerce solutions, video editing, graphic design, and software quality assurance. Project timelines and deliverables will be specified in individual service agreements.",
+      "VersaNex commits to delivering high-quality services including custom software development, mobile app development, UI/UX design, and e-commerce. Project timelines and deliverables will be specified in individual service agreements.",
   },
   {
     title: "10. Payment Terms",

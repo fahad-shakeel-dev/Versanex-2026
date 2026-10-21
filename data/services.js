@@ -1,4 +1,4 @@
-export const services = [
+const serviceCatalog = [
   // 1. Custom Software Development
   {
     id: 1,
@@ -767,5 +767,9 @@ export const services = [
     },
   },
 ];
+
+export const services = serviceCatalog.filter((service) => [
+  "custom-software-development", "mobile-app-development", "ui-ux-design", "ecommerce-development",
+].includes(service.slug))
 
 export const getServiceBySlug = (slug) => services.find((s) => s.slug === slug)

@@ -4,8 +4,8 @@ const stories = {
     solution: "We built a responsive Next.js storefront with dynamic product listings, category filtering, and a dedicated admin panel. The interface balances a refined retail identity with straightforward browsing and content management.",
   },
   "food-delivery-web-app": {
-    challenge: "Bring menu browsing, ordering, and restaurant management into one experience that works for both customers and the team handling their orders.",
-    solution: "We built a MERN application with category-based menus, a shopping cart, Cash on Delivery, and order tracking. A separate admin experience handles food items, offers, and customer orders, backed by secure authentication.",
+    challenge: "Bring Indus & Olive's menu and ordering experience online while giving the restaurant a central place to manage its orders, customers, and food listings.",
+    solution: "We built a restaurant website where customers can explore the online menu, browse food items, add dishes to their cart, and complete checkout. A detailed admin panel lets the restaurant manage orders, customer accounts, menu categories, food listings, pricing, and availability.",
   },
   "mern-stack-job-seeking-web-application": {
     challenge: "Connect job seekers and employers through a clear, secure workflow for finding opportunities, submitting resumes, and managing applications.",

@@ -1,0 +1,60 @@
+/* Scale this section above the existing 1100px reference layout. */
+@media (min-width: 1101px) {
+  .section {
+    padding-block: clamp(112px, calc(88.5333px + 2.133333vw), 144px);
+  }
+
+  .frame {
+    max-width: 1920px;
+    padding-inline: clamp(48px, 3.333333vw, 80px);
+  }
+
+  .header {
+    margin-bottom: clamp(56px, calc(38.4px + 1.6vw), 80px);
+    padding-bottom: clamp(32px, calc(20.2667px + 1.066667vw), 48px);
+  }
+
+  .label {
+    font-size: clamp(11px, calc(8.8px + 0.2vw), 14px);
+  }
+
+  .heading {
+    font-size: clamp(60px, calc(33.6px + 2.4vw), 96px);
+  }
+
+  .counter,
+  .serviceId {
+    font-size: clamp(12px, calc(9.0667px + 0.266667vw), 16px);
+  }
+
+  .stack {
+    gap: clamp(32px, calc(20.2667px + 1.066667vw), 48px);
+  }
+
+  .card {
+    padding: clamp(40px, calc(22.4px + 1.6vw), 64px);
+  }
+
+  .grid {
+    gap: clamp(32px, calc(20.2667px + 1.066667vw), 48px);
+  }
+
+  .content {
+    min-height: clamp(200px, calc(141.3333px + 5.333333vw), 280px);
+  }
+
+  .title {
+    font-size: clamp(48px, calc(30.4px + 1.6vw), 72px);
+  }
+
+  .description {
+    max-width: 768px;
+    font-size: clamp(14px, calc(11.0667px + 0.266667vw), 18px);
+  }
+
+  .action {
+    font-size: clamp(12px, calc(9.8px + 0.2vw), 15px);
+    padding-inline: clamp(20px, calc(14.1333px + 0.533333vw), 28px);
+    padding-block: clamp(10px, calc(7.0667px + 0.266667vw), 14px);
+  }
+}

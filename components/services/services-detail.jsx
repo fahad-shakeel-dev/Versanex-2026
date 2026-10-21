@@ -16,7 +16,7 @@ export default function ServiceDetailsSection({ serviceData }) {
   const data = serviceData || {
     title: "Web Development",
     subheading:
-      "Your website is your most valuable digital asset. At Broshtech, we build websites that are not just beautiful — they are engineered for speed, SEO, and conversion from the ground up.",
+      "Your website is your most valuable digital asset. At VersaNex, we build websites that are not just beautiful — they are engineered for speed, SEO, and conversion from the ground up.",
     secondaryDescription:
       "Whether you need a simple landing page or a complex multi-language portal, we deliver pixel-perfect results using the latest web technologies.",
     deliverablesTitle: "What we deliver",

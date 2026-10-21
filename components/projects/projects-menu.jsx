@@ -1,19 +1,34 @@
 "use client"
 
 import Link from "next/link"
-import useSWR from "swr"
+import { isPublicProject, withProjectMedia } from "@/data/project-media"
 import { FiArrowUpRight, FiBriefcase, FiCpu, FiSmartphone } from "react-icons/fi"
 
 const hiddenCategories = new Set(["graphic-designing", "video-editing", "content-writing", "digital-marketing", "software-quality-assurance"])
+const projects = [
+  { title: "LuxuryStay", slug: "luxurystay", category: "website-developing", subCategory: "Hotel & Hospitality Website", publishStatus: "published" },
+  { title: "CallMind AI", slug: "callmind-ai-voice-calling-platform", category: "website-developing", subCategory: "AI Voice Calling Platform", publishStatus: "published" },
+  { title: "Mahal Foret Hayat", slug: "mahal-foret-hayat", category: "website-developing", subCategory: "Construction & Corporate Website", publishStatus: "published" },
+  { title: "MaxCoat", slug: "maxcoat", category: "website-developing", subCategory: "Car Care E-commerce", publishStatus: "published" },
+  { title: "Apex IELTS Writing", slug: "apex-ielts-writing", category: "website-developing", subCategory: "AI Learning Platform", publishStatus: "published" },
+  { title: "Time Center – Modern Watch Retail Website", slug: "time-center-modern-watch-retail-website", category: "website-developing", subCategory: "E-commerce Development", publishStatus: "published" },
+  { title: "Indus & Olive", slug: "food-delivery-web-app", category: "website-developing", subCategory: "Restaurant Ordering & Management", publishStatus: "published" },
+  { title: "Real-Time Chat", slug: "real-time-chat", category: "website-developing", subCategory: "Chat & Messaging App Development", publishStatus: "published" },
+  { title: "SEO Master Dashboard", slug: "seo-master-dashboard", category: "website-developing", subCategory: "", publishStatus: "published" },
+  { title: "University Portal", slug: "university-portal", category: "website-developing", subCategory: "University Management System", publishStatus: "published" },
+  { title: "Finance Flow – Finance Management System", slug: "finance-flow-finance-management-system", category: "website-developing", subCategory: "Finance Management System", publishStatus: "published" },
+  { title: "Hotel Management System", slug: "hotel-management-system", category: "website-developing", subCategory: "Web Application, Hotel Booking System, Management Dashboard", publishStatus: "published" },
+  { title: "Fixit - Your AI-Powered Home Services Companion", slug: "fixit-your-ai-powered-home-services-companion", category: "mobile-app-development", subCategory: "AI Home Services App", publishStatus: "published" },
+]
 
 export function groupMenuProjects(projects) {
   const groups = { projects: [], apps: [] }
-  projects.forEach(project => {
+  projects.filter(isPublicProject).map(withProjectMedia).forEach(project => {
     const category = (project.category || "").toLowerCase().trim().replace(/\s+/g, "-")
     if (!project.title?.trim() || !project.slug?.trim() || hiddenCategories.has(category)) return
     if (project.publishStatus && project.publishStatus !== "published") return
     const isMobile = category.includes("mobile") || category.includes("android") || category.includes("ios")
-    const isApp = isMobile || /\b(apps?|applications?|systems?|dashboard|portal|chat|saas|software)\b/i.test(`${project.title} ${project.subCategory || ""} ${category.replace(/-/g, " ")}`)
+    const isApp = isMobile || project.slug === "callmind-ai-voice-calling-platform" || /\b(apps?|applications?|systems?|dashboard|portal|chat|saas|software)\b/i.test(`${project.title} ${project.subCategory || ""} ${category.replace(/-/g, " ")}`)
     groups[isApp ? "apps" : "projects"].push({
       id: project._id || project.slug,
       name: project.title,
@@ -24,31 +39,12 @@ export function groupMenuProjects(projects) {
   return groups
 }
 
-async function fetchProjects(url) {
-  const response = await fetch(url)
-  const result = await response.json()
-  if (!response.ok || !result.success || !Array.isArray(result.data)) {
-    throw new Error("Unable to load projects")
-  }
-  return result.data
-}
-
 export default function ProjectsMenu({ onNavigate, compact = false }) {
-  const { data, error, isLoading, mutate } = useSWR("/api/projects", fetchProjects, {
-    revalidateOnFocus: false,
-    dedupingInterval: 60000,
-  })
-  const groups = groupMenuProjects(data || [])
+  const data = projects
+  const groups = groupMenuProjects(data)
 
   return (
     <div className={compact ? "text-[#1b2b40]" : "p-2 text-[#1b2b40]"}>
-      {isLoading && <p role="status" className="px-2 py-5 text-sm text-gray-500">Loading our projects...</p>}
-      {error && !data && (
-        <div role="status" className="px-2 py-5 text-sm text-gray-500">
-          <p>Projects couldn&apos;t be loaded.</p>
-          <button type="button" onClick={() => mutate()} className="mt-2 text-gray-900 underline underline-offset-4">Try again</button>
-        </div>
-      )}
       {data && (
         <div className={compact ? "flex flex-col gap-6" : "grid grid-cols-1 sm:grid-cols-2 gap-8 px-2 pb-5"}>
           {[

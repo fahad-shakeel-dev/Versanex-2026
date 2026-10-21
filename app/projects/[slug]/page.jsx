@@ -11,19 +11,20 @@ import ProjectAbout from "@/components/projects/SingleProject/ProjectAbout";
 import ProjectStory from "@/components/projects/SingleProject/ProjectStory";
 import ProjectDetails from "@/components/projects/SingleProject/ProjectDetails";
 import RelatedProjects from "@/components/projects/SingleProject/RelatedProjects";
+import { getStaticProject, withProjectMedia } from "@/data/project-media";
 
 
 export default function ProjectDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const [project, setProject] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [project, setProject] = useState(() => getStaticProject(params.slug));
+  const [loading, setLoading] = useState(() => !getStaticProject(params.slug));
   const [error, setError] = useState(null);
   const [reviews, setReviews] = useState([]);
-  const [relatedProjects, setRelatedProjects] = useState([]);
+  const [relatedProjects, setRelatedProjects] = useState(() => getStaticProject(params.slug)?.relatedProjects || []);
 
 useEffect(() => {
-  if (!project?._id) return;
+  if (project?.isStatic || !project?._id) return;
 
   const viewedKey = `viewed_${project._id}`;
 
@@ -57,6 +58,14 @@ useEffect(() => {
       setError(null);
       setReviews([]);
       setRelatedProjects([]);
+      const staticProject = getStaticProject(params.slug);
+      if (staticProject) {
+        setProject(staticProject);
+        setReviews(staticProject.reviews);
+        setRelatedProjects(staticProject.relatedProjects);
+        setLoading(false);
+        return;
+      }
       try {
         const response = await fetch(`/api/projects/${params.slug}`);
         const result = await response.json();
@@ -67,7 +76,7 @@ useEffect(() => {
           return;
         }
 
-        const projectData = result.data || {};
+        const projectData = withProjectMedia(result.data || {});
         setProject(projectData);
 
         // Fetch Reviews with enhanced error handling
@@ -95,7 +104,7 @@ useEffect(() => {
         );
         const relatedData = await relatedResponse.json();
         if (relatedData.success)
-          setRelatedProjects((relatedData.data || []).filter(item => item.slug !== params.slug && item.category === projectData.category).slice(0, 3));
+          setRelatedProjects((relatedData.data || []).filter(item => item.slug !== params.slug && item.category === projectData.category).slice(0, 3).map(withProjectMedia));
       } catch (err) {
         console.error("Error fetching project:", err);
         setError("Error fetching project: " + err.message);

@@ -39,6 +39,10 @@
 .featureList li { display: flex; gap: 20px; padding: 15px 0; border-top: 1px solid #dfe2e6; color: #424a56; font-size: 13px; line-height: 1.6; }
 .featureList li > span { padding-top: 2px; color: #9299a3; font-family: var(--font-geist-mono), monospace; font-size: 10px; }
 .closingImage { position: relative; margin: 0; aspect-ratio: 1.85; border-radius: 22px; overflow: hidden; background: #e3e5e9; }
+.closingImage.allMockupsImage { aspect-ratio: 3 / 2; }
+.deviceGallery { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; aspect-ratio: auto; }
+.deviceGallery .galleryMain { grid-column: 1 / -1; grid-row: auto; }
+.preview.deviceScene, .closingImage.deviceScene, .deviceGallery .deviceScene { height: auto; aspect-ratio: 3 / 2; }
 .letterParagraph { position: relative; }
 .revealWord { display: inline-block; white-space: nowrap; }
 .revealLetter { display: inline; }
@@ -82,4 +86,15 @@
   .fade { opacity: 1 !important; transform: none !important; }
   .demo { transition: none; }
   .revealLetter { opacity: 1 !important; }
+}
+
+/* CallMind's supplied mockups keep their proportions in a balanced showcase. */
+.previewWrap.callMindPreview { max-width: 1040px; margin-left: auto; margin-right: auto; background: #edf3fb; box-shadow: 0 24px 64px rgba(0, 0, 0, .2); }
+.callMindPreview .previewCaption { position: relative; inset: auto; margin: 0; border: 0; border-radius: 0; background: #edf3fb; padding: 22px 28px; }
+.gallery.balancedGallery { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; aspect-ratio: auto; align-items: start; }
+.balancedGallery .galleryMain, .balancedGallery .galleryDetail { grid-column: auto; grid-row: auto; }
+.balancedGallery .galleryImage.deviceScene { aspect-ratio: 4 / 3; height: auto; box-shadow: 0 10px 30px rgba(27, 43, 64, .08); }
+@media (max-width: 767px) {
+  .gallery.balancedGallery { grid-template-columns: 1fr; }
+  .callMindPreview .previewCaption { padding: 20px; }
 }

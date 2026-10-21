@@ -1,5 +1,3 @@
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { Suspense } from "react";
 import GoogleAnalytics from '@/components/GoogleAnalytics'
@@ -14,6 +12,12 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
+  applicationName: "VersaNex",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -67,8 +71,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preload" href="/fonts/geist-sans-v1.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/geist-mono-v1.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
         <script
@@ -76,8 +82,8 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
             "@context": "https://schema.org",
             "@graph": [
-              { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "VersaNex", url: SITE_URL, logo: `${SITE_URL}/logo.png` },
-              { "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: "VersaNex", url: SITE_URL, publisher: { "@id": `${SITE_URL}/#organization` } },
+              { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "VersaNex", url: SITE_URL, logo: `${SITE_URL}/logo.png`, description: SITE_DESCRIPTION },
+              { "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: "VersaNex", url: SITE_URL, inLanguage: "en", publisher: { "@id": `${SITE_URL}/#organization` } },
             ],
           }).replace(/</g, "\\u003c") }}
         />

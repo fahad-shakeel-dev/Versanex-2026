@@ -19,10 +19,10 @@ export default function GoogleAnalytics() {
   useEffect(() => {
     const consent = getCookie(COOKIE_NAME);
     if (consent) {
-      const prefs = JSON.parse(consent);
-      if (prefs.analytics) {
-        setAllowed(true);
-      }
+      try {
+        const prefs = JSON.parse(consent);
+        if (prefs.analytics) setAllowed(true);
+      } catch { /* Ignore stale or malformed preferences. */ }
     }
   }, []);
 
@@ -30,18 +30,17 @@ export default function GoogleAnalytics() {
     if (!allowed) return;
 
     // Load GA script dynamically
-    const script = document.createElement("script");
-    script.src = "https://www.googletagmanager.com/gtag/js?id=G-YG41JNTWD3";
-    script.async = true;
-    document.head.appendChild(script);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      window.dataLayer.push(arguments);
+    if (!window.gtag) {
+      const script = document.createElement("script");
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-YG41JNTWD3";
+      script.async = true;
+      document.head.appendChild(script);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-YG41JNTWD3', { send_page_view: false });
     }
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', 'G-YG41JNTWD3', {
+    window.gtag('event', 'page_view', {
       page_path: pathname,
     });
 

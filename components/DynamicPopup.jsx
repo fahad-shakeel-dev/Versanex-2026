@@ -23,34 +23,20 @@ export default function DynamicPopup() {
     fetchPopup();
   }, []);
 
-  // Prevent page scroll when popup open
+  // Lock scrolling only while a popup is actually open.
   useEffect(() => {
-    if (visible) {
-      const scrollY = window.scrollY;
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-      document.body.style.height = '100%';
-      document.body.style.overscrollBehavior = 'none';
-    } else {
-      const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      document.body.style.height = '';
-      document.body.style.overscrollBehavior = '';
-      window.scrollTo(0, scrollY);
-    }
-
+    if (!visible) return;
+    const scrollY = window.scrollY;
+    const body = document.body;
+    const properties = ["overflow", "position", "top", "width", "height", "overscrollBehavior"];
+    const previous = Object.fromEntries(properties.map(key => [key, body.style[key]]));
+    Object.assign(body.style, {
+      overflow: "hidden", position: "fixed", top: `-${scrollY}px`,
+      width: "100%", height: "100%", overscrollBehavior: "none",
+    });
     return () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      document.body.style.height = '';
-      document.body.style.overscrollBehavior = '';
+      Object.assign(body.style, previous);
+      window.scrollTo(0, scrollY);
     };
   }, [visible]);
 

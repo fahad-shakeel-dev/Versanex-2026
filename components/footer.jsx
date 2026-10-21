@@ -12,9 +12,8 @@ import {
   FiPhone,
   FiArrowRight,
 } from "react-icons/fi";
-import Image from "next/image";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Image from "@/components/optimized-image";
+import styles from "./footer.module.css";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -23,6 +22,7 @@ export default function Footer() {
   const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
+      const { toast } = await import("./notifications");
       if (!email.trim()) return toast.error("Please enter your email");
 
       try {
@@ -67,15 +67,16 @@ export default function Footer() {
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(242,173,8,0.1),transparent_60%)]"
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-24">
-        <div className="grid gap-12 md:grid-cols-4">
+      <div className={`${styles.frame} relative max-w-7xl mx-auto px-6 py-20 md:py-24`}>
+        <div className={`${styles.columns} grid gap-12 md:grid-cols-4`}>
           {/* 1️⃣ Brand & Intro */}
-          <div>
-            <div className="flex items-center gap-2 mb-5">
+          <div className={styles.brand}>
+            <div className={`${styles.logoRow} flex items-center gap-2 mb-5`}>
               <Image
                 src="/logo.png"
                 height={50}
                 width={50}
+                sizes="(min-width: 1101px) 68px, 50px"
                 alt="VersaNex logo"
                 loading="lazy"
               />
@@ -159,7 +160,7 @@ export default function Footer() {
 
             <form
               onSubmit={handleSubmit}
-              className="flex items-center mb-6"
+              className={`${styles.newsletter} flex items-center mb-6`}
               aria-label="Newsletter Subscription Form"
             >
               <label htmlFor="newsletter-email" className="sr-only">
@@ -189,7 +190,7 @@ export default function Footer() {
             </form>
 
             {/* Social icons with animation */}
-            <div className="flex gap-4" aria-label="Social media links">
+            <div className={`${styles.socials} flex gap-4`} aria-label="Social media links">
               {[
                 { icon: FiFacebook, link: "https://www.facebook.com/versanexinc", label: "Facebook" },
                 { icon: FiInstagram, link: "https://www.instagram.com/versanexinc", label: "Instagram" },
@@ -213,10 +214,10 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <hr className="my-10 border-gray-800 relative z-10" />
+        <hr className={`${styles.divider} my-10 border-gray-800 relative z-10`} />
 
         {/* Bottom section */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-gray-500 relative z-10">
+        <div className={`${styles.bottom} flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-gray-500 relative z-10`}>
           <p>
             © {new Date().getFullYear()}{" "}
             <span className="text-gray-300 font-semibold">VersaNex</span>. All

@@ -116,7 +116,7 @@ function DesktopWaveProcess() {
   const stepThresholdsRef = useRef(STEPS.map((step) => step.threshold))
   const tickingRef = useRef(false)
   const visibleRef = useRef(false)
-  const [scrollProgress, setScrollProgress] = useState(0)
+  const [activeSteps, setActiveSteps] = useState(0)
 
   useEffect(() => {
     const section = sectionRef.current
@@ -154,8 +154,8 @@ function DesktopWaveProcess() {
 
       pathFill.style.strokeDashoffset = pathLenRef.current * (1 - progress)
       
-      // Update state so React handles the class rendering deterministically
-      setScrollProgress(progress)
+      // The line updates every frame; React only updates when a point changes state.
+      setActiveSteps(stepThresholdsRef.current.filter(threshold => progress >= threshold).length)
     }
 
     const onScroll = () => {
@@ -243,6 +243,21 @@ function DesktopWaveProcess() {
         #process-wave-v3 .pw-caption p { font-size: .88rem; line-height: 1.5; color: var(--pw-muted); font-weight: 500; margin: 0; transition: color 0.5s ease; }
         #process-wave-v3 .pw-caption.step-active p { color: #000; }
         .dark #process-wave-v3 .pw-caption.step-active p { color: var(--pw-text); }
+
+        /* Scale the desktop presentation without changing the wave or its timing. */
+        @media (min-width: 1101px) {
+          #process-wave-v3 .pw-card { max-width: 1920px; max-height: 1200px; }
+          #process-wave-v3 .pw-eyebrow { font-size: clamp(11.2px, calc(8.2667px + 0.266667vw), 15.2px); }
+          #process-wave-v3 h2 { font-size: min(clamp(38.5px, 3.5vw, 80px), 8vh); }
+          #process-wave-v3 .pw-lede { max-width: clamp(608px, calc(408.5333px + 18.133333vw), 880px); font-size: min(clamp(15.2px, calc(10.2133px + 0.453333vw), 22px), 3vh); }
+          #process-wave-v3 .pw-cta { font-size: clamp(13.6px, calc(10.3733px + 0.293333vw), 18px); padding: clamp(9.6px, calc(6.3733px + 0.293333vw), 14px) clamp(22.4px, calc(15.36px + 0.64vw), 32px); }
+          #process-wave-v3 .pw-point { width: clamp(44px, calc(29.3333px + 1.333333vw), 64px); height: clamp(44px, calc(29.3333px + 1.333333vw), 64px); border-radius: clamp(11px, calc(7.3333px + 0.333333vw), 16px); }
+          #process-wave-v3 .pw-point svg { width: clamp(19px, calc(12.4px + 0.6vw), 28px); height: clamp(19px, calc(12.4px + 0.6vw), 28px); }
+          #process-wave-v3 .pw-caption { width: clamp(230px, calc(149.3333px + 7.333333vw), 340px); max-width: 22%; }
+          #process-wave-v3 .pw-caption__num { top: calc(-1 * clamp(20px, calc(12.6667px + 0.666667vw), 30px)); font-size: clamp(96px, calc(60.8px + 3.2vw), 144px); }
+          #process-wave-v3 .pw-caption h3 { font-size: clamp(18.4px, calc(11.36px + 0.64vw), 28px); }
+          #process-wave-v3 .pw-caption p { font-size: min(clamp(14.08px, calc(9.152px + 0.448vw), 20.8px), 3vh); }
+        }
       `}</style>
 
       <section id="process-wave-v3" aria-labelledby="process-desktop-heading" className="hidden lg:block" ref={sectionRef}>
@@ -272,7 +287,7 @@ function DesktopWaveProcess() {
               </svg>
 
               {STEPS.map((step, idx) => {
-                const active = scrollProgress >= stepThresholdsRef.current[idx]
+                const active = idx < activeSteps
                 return (
                   <div key={idx}>
                     <div

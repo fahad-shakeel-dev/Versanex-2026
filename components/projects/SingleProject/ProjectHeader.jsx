@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useId, useRef, useState } from "react"
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 import Link from "next/link"
 import { ArrowDown, ArrowLeft, ArrowUpRight } from "lucide-react"
 import styles from "./project-hero.module.css"
@@ -81,7 +81,9 @@ export default function ProjectHeader({ project }) {
               </div>
             )}
             <div className={styles.actions}>
-              {liveLink && <a href={liveLink} target="_blank" rel="noopener noreferrer" className={styles.visit}>Visit project <ArrowUpRight size={18} aria-hidden="true" /></a>}
+              {project.contactCta
+                ? <Link href="/contact" className={styles.visit}>{project.contactCta} <ArrowUpRight size={18} aria-hidden="true" /></Link>
+                : liveLink && <a href={liveLink} target="_blank" rel="noopener noreferrer" className={styles.visit}>Visit project <ArrowUpRight size={18} aria-hidden="true" /></a>}
               <a href="#project-details" onClick={explore} className={styles.explore} aria-label="Explore project details"><ArrowDown size={21} aria-hidden="true" /></a>
             </div>
           </div>
@@ -89,15 +91,19 @@ export default function ProjectHeader({ project }) {
         <div className={styles.visualContainer}>
           {project.images && project.images.length > 0 ? (
             project.images.slice(0, 3).map((img, i) => (
-              <figure key={i} className={styles.visual} style={{ top: `calc(80px + ${i * 16}px)`, zIndex: i + 1 }}>
+              <figure key={i} className={styles.visual} style={{
+                top: `calc(80px + ${i * 16}px)`,
+                zIndex: i + 1,
+                ...((img.url?.startsWith("/project-mockups/") || img.url?.startsWith("/mockups/")) ? { height: "auto", aspectRatio: "3 / 2" } : {}),
+              }}>
                 <Image src={img.url} alt={img.alt || project.title || "Project preview"}
-                  fill priority={i === 0} unoptimized sizes="90vw" className={styles.cover} />
+                  fill priority={i === 0} sizes="90vw" className={styles.cover} />
               </figure>
             ))
           ) : (
             <figure className={styles.visual} style={{ top: '120px' }}>
               <Image src={imgSrc} alt={project.title || "Project preview"}
-                fill priority unoptimized sizes="90vw" className={styles.cover}
+                fill priority sizes="90vw" className={styles.cover}
                 onError={() => { if (imgSrc !== "/placeholder.svg") setImgSrc("/placeholder.svg") }} />
             </figure>
           )}

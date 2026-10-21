@@ -1,14 +1,21 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Image from "next/image"
+import Image from "@/components/optimized-image"
 import Link from "next/link"
 import { projectCategories } from "./portfolio-header"
 import styles from "./projects-gallery.module.css"
 import ProjectListRow from "./project-list-row"
+import { withProjectMedia } from "@/data/project-media"
 
 const HIDDEN_CATEGORIES = ["graphic-designing", "video-editing", "content-writing", "digital-marketing", "software-quality-assurance"]
 const PER_PAGE = 8
+const MOCKUP_PREVIEW_SLUGS = new Set([
+  "maxcoat",
+  "apex-ielts-writing",
+  "time-center-modern-watch-retail-website",
+  "food-delivery-web-app",
+])
 
 export default function ProjectsGrid({ category, view = "grid" }) {
   const [projects, setProjects] = useState([])
@@ -23,7 +30,7 @@ export default function ProjectsGrid({ category, view = "grid" }) {
         const res = await fetch("/api/projects", { cache: "no-store", signal: controller.signal })
         const result = await res.json()
         if (!res.ok || !result.success || !Array.isArray(result.data)) throw new Error("Unable to load projects. Please refresh and try again.")
-        setProjects(result.data)
+        setProjects(result.data.map(withProjectMedia))
       } catch (err) {
         if (err.name !== "AbortError") setError("Unable to load projects. Please refresh and try again.")
       } finally {
@@ -76,7 +83,7 @@ export default function ProjectsGrid({ category, view = "grid" }) {
     <>
       <div className={gridClass}>
         {ordered.slice((page - 1) * PER_PAGE, page * PER_PAGE).map((project, index) => {
-          const image = project.images?.[0]
+          const image = (MOCKUP_PREVIEW_SLUGS.has(project.slug) && project.homeImage) || project.images?.[0]
           const imageUrl = typeof image?.url === "string" && image.url.trim() ? image.url : "/placeholder.svg"
           const label = projectCategories.find(item => item.key === project.category)?.label || project.category?.replace(/-/g, " ")
           const date = project.createdAt ? new Date(project.createdAt) : null
@@ -91,7 +98,7 @@ export default function ProjectsGrid({ category, view = "grid" }) {
               <Link href={`/projects/${project.slug}`} className={styles.cardLink} aria-label={`View project: ${project.title}`}>
                 <div className={styles.image}>
                   <Image src={imageUrl} alt={image?.alt || project.title || "Project preview"}
-                    fill unoptimized sizes="(max-width: 767px) 100vw, 45vw"
+                    fill sizes="(max-width: 767px) 100vw, 45vw"
                     onError={event => { event.currentTarget.src = "/placeholder.svg" }} />
                 </div>
                 <div className={styles.caption}>
