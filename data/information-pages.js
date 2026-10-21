@@ -19,6 +19,40 @@ export const faqData = [
     ]
   },
   {
+    "category": "Web Development",
+    "questions": [
+      {
+        "q": "What kinds of websites can you build?",
+        "a": "We build corporate websites, landing pages, content-driven sites, and web applications. We agree the features, platform, and design approach around your goals."
+      },
+      {
+        "q": "Will our website work on mobile devices?",
+        "a": "We design responsive websites for phones, tablets, and desktop screens, with attention to usability, accessibility, and performance."
+      },
+      {
+        "q": "Can you improve an existing website?",
+        "a": "We can review your existing website and discuss improvements to its design, performance, content management, and integrations based on your needs."
+      }
+    ]
+  },
+  {
+    "category": "SaaS Development",
+    "questions": [
+      {
+        "q": "Can you build a SaaS product from an idea?",
+        "a": "We can help define your product, design the user experience, and develop a SaaS platform. We agree the initial features and release plan before development begins."
+      },
+      {
+        "q": "Can you add subscriptions and user roles?",
+        "a": "We can develop subscription billing, account management, user roles, and dashboards. Supported payment providers and integrations depend on your business requirements."
+      },
+      {
+        "q": "Can you extend an existing SaaS platform?",
+        "a": "We can review your current platform and plan additional features, integrations, or architecture improvements around your users and business goals."
+      }
+    ]
+  },
+  {
     "category": "Mobile App Development",
     "questions": [
       {
@@ -34,40 +68,6 @@ export const faqData = [
         "a": "We can help prepare your app for release and guide you through the submission process. App store approval is determined by the respective platform."
       }
     ]
-  },
-  {
-    "category": "UI/UX Design",
-    "questions": [
-      {
-        "q": "What is included in your UI/UX design service?",
-        "a": "We design user journeys, wireframes, prototypes, and interfaces for digital products. The deliverables are agreed with you based on the scope of your project."
-      },
-      {
-        "q": "Can you redesign an existing app or product?",
-        "a": "Yes. We can review the current user experience and design improvements to navigation, layouts, and interactions while keeping your business goals in focus."
-      },
-      {
-        "q": "Can you provide designs for our development team?",
-        "a": "We can prepare design files, interactive prototypes, and interface specifications so your developers can understand and implement the approved design."
-      }
-    ]
-  },
-  {
-    "category": "E-commerce",
-    "questions": [
-      {
-        "q": "Can you build a custom online store?",
-        "a": "We develop e-commerce stores with product catalogs, shopping carts, checkout flows, and order management. We agree the platform and features with you before development."
-      },
-      {
-        "q": "Can you integrate payments and shipping?",
-        "a": "We can integrate compatible payment providers and shipping services. Availability depends on your store platform, business location, and provider requirements."
-      },
-      {
-        "q": "Can you improve an existing e-commerce store?",
-        "a": "We can review your store and discuss improvements to the shopping experience, performance, and integrations based on your needs."
-      }
-    ]
   }
 ]
 
@@ -80,7 +80,7 @@ export const privacyData = [
   {
     title: "2. How We Use Your Information",
     content:
-      "We use the information we collect to provide, maintain, and improve our services, process transactions, send transactional and promotional communications, respond to your inquiries, and comply with legal obligations. We use your information to deliver custom software development, mobile app development, UI/UX design, and e-commerce services.",
+      "We use the information we collect to provide, maintain, and improve our services, process transactions, send transactional and promotional communications, respond to your inquiries, and comply with legal obligations. We use your information to deliver custom software development, web development, SaaS development, and mobile app development services.",
   },
   {
     title: "3. Information Sharing",
@@ -178,7 +178,7 @@ export const termsData = [
   {
     title: "9. Service Delivery",
     content:
-      "VersaNex commits to delivering high-quality services including custom software development, mobile app development, UI/UX design, and e-commerce. Project timelines and deliverables will be specified in individual service agreements.",
+      "VersaNex commits to delivering high-quality services including custom software development, web development, SaaS development, and mobile app development. Project timelines and deliverables will be specified in individual service agreements.",
   },
   {
     title: "10. Payment Terms",

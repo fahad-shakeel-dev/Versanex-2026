@@ -62,10 +62,8 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      { source: '/services/web-development', destination: '/services/custom-software-development', permanent: true },
-      { source: '/services/saas-development', destination: '/services/custom-software-development', permanent: true },
       { source: '/services/custom-software', destination: '/services/custom-software-development', permanent: true },
-      { source: '/services/saas-products', destination: '/services/custom-software-development', permanent: true },
+      { source: '/services/saas-products', destination: '/services/saas-development', permanent: true },
       { source: '/services/mobile-apps', destination: '/services/mobile-app-development', permanent: true },
       { source: '/services/e-commerce', destination: '/services/ecommerce-development', permanent: true },
     ];

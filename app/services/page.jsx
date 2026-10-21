@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react"
 import Image from "@/components/optimized-image"
 import Link from "next/link"
 import gsap from "gsap"
-import { ArrowUpRight, Code2, Smartphone, PenTool, ShoppingBag } from "lucide-react"
+import { ArrowUpRight, Code2, Smartphone, Globe2, Cloud } from "lucide-react"
 import { services } from "@/data/services"
 import ProcessFlow from "@/components/services/process-flow"
 import Navbar from "@/components/navbar"
@@ -14,8 +14,8 @@ import styles from "./services.module.css"
 const serviceIcons = {
   "custom-software-development": Code2,
   "mobile-app-development": Smartphone,
-  "ui-ux-design": PenTool,
-  "ecommerce-development": ShoppingBag,
+  "web-development": Globe2,
+  "saas-development": Cloud,
 }
 
 export default function ServicesPage() {

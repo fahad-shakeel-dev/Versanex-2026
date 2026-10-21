@@ -1,3 +1,5 @@
+import { ACTIVE_SERVICE_SLUGS } from "@/data/service-slugs"
+
 const serviceCatalog = [
   // 1. Custom Software Development
   {
@@ -768,8 +770,6 @@ const serviceCatalog = [
   },
 ];
 
-export const services = serviceCatalog.filter((service) => [
-  "custom-software-development", "mobile-app-development", "ui-ux-design", "ecommerce-development",
-].includes(service.slug))
+export const services = serviceCatalog.filter((service) => ACTIVE_SERVICE_SLUGS.includes(service.slug))
 
-export const getServiceBySlug = (slug) => services.find((s) => s.slug === slug)
+export const getServiceBySlug = (slug) => serviceCatalog.find((s) => s.slug === slug)

@@ -11,7 +11,7 @@ export default function FAQSection({ faqs }) {
       number: "01",
       question: "What does VersaNex develop?",
       answer:
-        "VersaNex specializes in custom software development, mobile app development, UI/UX design, and e-commerce solutions.",
+        "VersaNex specializes in custom software development, web development, SaaS development, and mobile app development.",
     },
     {
       number: "02",
@@ -41,7 +41,7 @@ export default function FAQSection({ faqs }) {
       number: "06",
       question: "Can VersaNex design and develop the entire product?",
       answer:
-        "Absolutely. We offer end-to-end services including UI/UX design and development for custom software, mobile apps, and e-commerce products.",
+        "Absolutely. We offer end-to-end design and development for custom software, websites, SaaS platforms, and mobile apps.",
     },
   ]
 

@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "@/components/optimized-image"
 import ProjectsMenu from "@/components/projects/projects-menu"
 import desktopStyles from "@/components/desktop-header.module.css"
-const activeServiceSlugs = new Set(["custom-software-development", "mobile-app-development", "ui-ux-design", "ecommerce-development"])
+import { ACTIVE_SERVICE_SLUGS } from "@/data/service-slugs"
+const activeServiceSlugs = new Set(ACTIVE_SERVICE_SLUGS)
 import {
   FiMenu,
   FiX,
