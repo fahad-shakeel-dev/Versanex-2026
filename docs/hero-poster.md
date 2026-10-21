@@ -1,0 +1,9 @@
+# Hero video poster
+
+Asset: `public/hero-poster-v2.webp`.
+
+Created using the built-in image generation tool, then encoded as WebP for the website. The shared video component uses this image while video data loads or playback is unavailable. Video files, playback behavior, layout, and page copy are unchanged.
+
+## Generation prompt
+
+Use case: product-mockup. Asset type: premium website hero video poster for VersaNex, a software development and digital product design studio. Create a beautiful polished cinematic 3D product photograph, extra-wide panoramic composition approximately 2.2:1. A sophisticated graphite laptop and one slim smartphone together at the center, with a few elegant floating browser interface panels suggesting premium web design, mobile apps and software dashboards. Screens feature refined authentic-looking visual layouts, ivory cards, thin charts and restrained amber-gold accent elements; use abstract interface shapes with no legible text. Dark warm charcoal architectural studio backdrop, gentle amber rim lighting, tactile brushed metal and softly reflective surfaces, nuanced shadows and subtle depth of field. Strong art direction, photoreal materials, beautifully balanced negative space, contemporary luxury digital design aesthetic. Main objects and detail concentrated around the central horizontal band so the image remains attractive cropped into a short wide video strip or a mobile rectangle. Crisp high quality, restrained visual complexity, no generic stock-photo look. Palette: near-black, graphite, soft ivory and VersaNex amber #f2ad08. No logos, no words, no watermarks, no people, no neon blue or purple, no clutter. The output is a finished standalone background image, not a webpage screenshot; do not add headings, buttons or borders outside the device screens.

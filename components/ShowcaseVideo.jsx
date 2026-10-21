@@ -40,7 +40,7 @@ export default function ShowcaseVideo({ eager = false, enabled = true, ...props 
   }, [enabled, eager])
 
   return <video {...props} ref={videoRef}
-    poster="/hero-showcase.webp" muted loop playsInline autoPlay={eager && enabled} preload={eager ? "auto" : "none"}
+    poster="/hero-poster-v2.webp" muted loop playsInline autoPlay={eager && enabled} preload={eager ? "auto" : "none"}
     aria-hidden="true" tabIndex={-1}>
     {eager && <>
       <source src="/hero-showreel-desktop-v2.mp4" type="video/mp4" media="(min-width: 1024px)" />
