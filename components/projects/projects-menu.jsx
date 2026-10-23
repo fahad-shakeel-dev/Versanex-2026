@@ -13,11 +13,10 @@ const projects = [
   { title: "Apex IELTS Writing", slug: "apex-ielts-writing", category: "website-developing", subCategory: "AI Learning Platform", publishStatus: "published" },
   { title: "Time Center – Modern Watch Retail Website", slug: "time-center-modern-watch-retail-website", category: "website-developing", subCategory: "E-commerce Development", publishStatus: "published" },
   { title: "Indus & Olive", slug: "food-delivery-web-app", category: "website-developing", subCategory: "Restaurant Ordering & Management", publishStatus: "published" },
-  { title: "Real-Time Chat", slug: "real-time-chat", category: "website-developing", subCategory: "Chat & Messaging App Development", publishStatus: "published" },
-  { title: "SEO Master Dashboard", slug: "seo-master-dashboard", category: "website-developing", subCategory: "", publishStatus: "published" },
-  { title: "University Portal", slug: "university-portal", category: "website-developing", subCategory: "University Management System", publishStatus: "published" },
   { title: "Finance Flow – Finance Management System", slug: "finance-flow-finance-management-system", category: "website-developing", subCategory: "Finance Management System", publishStatus: "published" },
-  { title: "Hotel Management System", slug: "hotel-management-system", category: "website-developing", subCategory: "Web Application, Hotel Booking System, Management Dashboard", publishStatus: "published" },
+  { title: "PetroFlow – Petrol Station Management System", slug: "petrol-management-system", category: "website-developing", subCategory: "Petrol Station Management System", publishStatus: "published" },
+  { title: "PeopleFlow HRMS", slug: "hrms-system", category: "website-developing", subCategory: "Human Resource Management System", publishStatus: "published" },
+  { title: "Veloura Salon Management System", slug: "salon-management-system", category: "website-developing", subCategory: "Salon POS & Management System", publishStatus: "published" },
   { title: "Fixit - Your AI-Powered Home Services Companion", slug: "fixit-your-ai-powered-home-services-companion", category: "mobile-app-development", subCategory: "AI Home Services App", publishStatus: "published" },
 ]
 

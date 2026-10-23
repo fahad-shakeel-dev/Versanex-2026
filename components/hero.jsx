@@ -302,12 +302,28 @@ function DesktopHero({ introVisible, isRevealed }) {
 }
 
 export default function Hero() {
-  const [introVisible, setIntroVisible] = useState(true)
+  const [introVisible, setIntroVisible] = useState(false)
   // Prepare the page while the opaque intro is playing above it.
   const [isRevealed, setIsRevealed] = useState(true)
   // The intro covers the page while the desktop viewport is detected.
   // Mobile visitors never hydrate the desktop scroll scene.
   const [isDesktop, setIsDesktop] = useState(false)
+  useEffect(() => {
+    const key = "versanex-home-intro-played"
+    try {
+      if (window.sessionStorage.getItem(key) === "true") return
+      const navigation = window.performance.getEntriesByType("navigation")[0]
+      const firstPath = navigation ? new URL(navigation.name, window.location.href).pathname : window.location.pathname
+      if (firstPath !== "/") {
+        window.sessionStorage.setItem(key, "true")
+        return
+      }
+      window.sessionStorage.setItem(key, "true")
+    } catch {
+      // Keep the intro available if browser storage is disabled.
+    }
+    setIntroVisible(true)
+  }, [])
   useEffect(() => {
     const media = window.matchMedia("(min-width: 1024px)")
     const update = () => setIsDesktop(media.matches)

@@ -31,6 +31,16 @@ const stories = {
     challenge: "Create a fashion and lifestyle storefront that gives products room to stand out and makes the journey from discovery to checkout easy to follow.",
     solution: "The store combines a product listing grid, product details, variants, filtering, and a shopping cart with a responsive checkout flow. Image interactions and page transitions complement the retail interface.",
   },
+  "salon-management-system": {
+    challenge: "Keep appointment schedules, salon services, specialist availability, and client visits coordinated in one place.",
+    solution: "The salon management experience brings together a daily operations overview, appointment scheduling, team availability, and service management. The portfolio mockups illustrate how these core workflows fit into one clear workspace.",
+  },  "hrms-system": {
+    challenge: "Bring employee administration, attendance, recruitment, and payroll into a connected workspace for HR teams.",
+    solution: "PeopleFlow combines an HR overview with dedicated employee, attendance, and recruitment workflows, alongside leave, payroll, and reporting tools.",
+  },  "petrol-management-system": {
+    challenge: "Organize the many moving parts of petrol station operations, from fuel stock and sales to staff, shifts, and point-of-sale activity.",
+    solution: "The PetroFlow dashboard brings daily sales, fuel stock, credit balances, and activity into one view. Dedicated screens extend that workflow to employees, tank inventory, and point of sale.",
+  },
   "finance-flow-finance-management-system": {
     challenge: "Give users a clear view of their finances, bringing expenses, budgets, reports, and savings goals together in one place.",
     solution: "Finance Flow combines expense tracking, budget management, financial insights, and savings goals in a single interface. User profiles and reporting help organize the financial management experience.",

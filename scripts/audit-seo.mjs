@@ -1,8 +1,8 @@
-﻿import assert from 'node:assert/strict'
+import assert from 'node:assert/strict'
 import fs from 'node:fs/promises'
 
 const origin = process.argv[2] || 'http://localhost:3003'
-const source = await fs.readFile(new URL('../lib/seo.js', import.meta.url), 'utf8')
+const source = (await fs.readFile(new URL('../lib/seo.js', import.meta.url), 'utf8')).replace(/^import \{ mediaUrl \} from "@\/lib\/media-url";?\r?\n/m, 'const mediaUrl = value => value\n')
 const seo = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`)
 const { SITE_URL, serializeJsonLd, metaDescription } = seo
 assert.equal(metaDescription('<p>Software &amp; design</p>'), 'Software & design')
@@ -73,7 +73,7 @@ for (const path of ['/about/ourteam', '/admin/login']) {
   const tags = [...html.matchAll(/<meta\b[^>]*>/g)].map(([tag]) => attrs(tag))
   for (const name of ['robots', 'googlebot']) assert.ok(tags.some(item => item.name === name && /noindex/.test(item.content)), `${path}: ${name} noindex`)
 }
-for (const [old, current] of Object.entries({ 'web-development': 'custom-software-development', 'saas-development': 'custom-software-development', 'custom-software': 'custom-software-development', 'saas-products': 'custom-software-development', 'mobile-apps': 'mobile-app-development', 'e-commerce': 'ecommerce-development' })) {
+for (const [old, current] of Object.entries({ 'custom-software': 'custom-software-development', 'saas-products': 'saas-development', 'mobile-apps': 'mobile-app-development', 'e-commerce': 'ecommerce-development' })) {
   const response = await request(`/services/${old}`, { redirect: 'manual' })
   assert.equal(response.status, 308)
   assert.equal(new URL(response.headers.get('location'), origin).pathname, `/services/${current}`)

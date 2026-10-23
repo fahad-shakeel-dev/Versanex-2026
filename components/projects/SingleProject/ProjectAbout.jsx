@@ -13,7 +13,7 @@ export function getAboutImages(images = []) {
   ;(Array.isArray(images) ? images : []).forEach(image => {
     const url = typeof image === "string" ? image : image?.url
     if (typeof url === "string" && url.trim() && !unique.has(url)) {
-      unique.set(url, { url, alt: typeof image === "object" ? image.alt : "" })
+      unique.set(url, { url, alt: typeof image === "object" ? image.alt : "", width: typeof image === "object" ? image.width : undefined, height: typeof image === "object" ? image.height : undefined })
     }
   })
   const gallery = [...unique.values()]
@@ -21,7 +21,7 @@ export function getAboutImages(images = []) {
 }
 
 function ProjectImage({ image, name, small = false, mobile, logo = false, reducedMotion }) {
-  const deviceScene = image.url.startsWith("/mockups/finance-flow/") || image.url.startsWith("/mockups/callmind-ai/") || image.url.startsWith("/mockups/luxurystay/")
+  const deviceScene = image.url.startsWith("/mockups/finance-flow/") || image.url.startsWith("/mockups/callmind-ai/") || image.url.startsWith("/mockups/luxurystay/") || image.url.startsWith("/mockups/petrol-management/") || image.url.startsWith("/mockups/hrms-system/") || image.url.startsWith("/mockups/salon-system/")
   const keepFrame = mobile || logo || deviceScene
   const imageRef = useRef(null)
   const { scrollYProgress } = useScroll({ target: imageRef, offset: ["start end", "end start"] })
@@ -31,7 +31,7 @@ function ProjectImage({ image, name, small = false, mobile, logo = false, reduce
 
   return (
     <div ref={imageRef} className={small ? styles.smallVisual : styles.largeVisual}>
-      <motion.figure className={`${styles.imageFrame} ${logo ? styles.logoFrame : ""} ${deviceScene ? styles.deviceScene : ""}`}
+      <motion.figure className={`${styles.imageFrame} ${logo ? styles.logoFrame : ""} ${deviceScene ? styles.deviceScene : ""}`} style={(image.url.startsWith("/mockups/petrol-management/") || image.url.startsWith("/mockups/hrms-system/") || image.url.startsWith("/mockups/salon-system/")) && image.width && image.height ? { aspectRatio: `${image.width} / ${image.height}` } : undefined}
         initial={reducedMotion ? false : { opacity: 0, clipPath: "inset(12% 0 12% 0 round 22px)" }}
         whileInView={{ opacity: 1, clipPath: "inset(0% 0 0% 0 round 22px)" }}
         viewport={{ once: true, amount: 0.15 }}

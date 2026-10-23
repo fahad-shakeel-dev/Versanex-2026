@@ -94,7 +94,7 @@ export default function ProjectHeader({ project }) {
               <figure key={i} className={styles.visual} style={{
                 top: `calc(80px + ${i * 16}px)`,
                 zIndex: i + 1,
-                ...((img.url?.startsWith("/project-mockups/") || img.url?.startsWith("/mockups/")) ? { height: "auto", aspectRatio: "3 / 2" } : {}),
+                ...((img.url?.startsWith("/project-mockups/") || img.url?.startsWith("/mockups/")) ? { height: "auto", aspectRatio: `${img.width || 3} / ${img.height || 2}` } : {}),
               }}>
                 <Image src={img.url} alt={img.alt || project.title || "Project preview"}
                   fill priority={i === 0} sizes="90vw" className={styles.cover} />

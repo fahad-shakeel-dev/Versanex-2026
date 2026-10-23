@@ -289,6 +289,7 @@ const fixitProject = {
   ],
 }
 
+
 const financeFlowProject = {
   _id: "finance-flow-finance-management-system",
   slug: "finance-flow-finance-management-system",
@@ -432,15 +433,130 @@ const luxuryStayProject = {
   ],
 }
 
+const petrolManagementProject = {
+  _id: "petrol-management-system",
+  slug: "petrol-management-system",
+  title: "PetroFlow – Petrol Station Management System",
+  isStatic: true,
+  homeImage: { url: "/mockups/petrol-management/petrol-flow-1.png", alt: "PetroFlow dashboard in a desktop monitor mockup", width: 1536, height: 1024 },
+  focusImage: { url: "/mockups/petrol-management/petrol-flow-2.png", alt: "PetroFlow tank inventory displayed in a desktop monitor mockup", width: 1448, height: 1086 },
+  description: "PetroFlow is a petrol station management platform for sales, fuel inventory, point of sale, station operations, and staff records. Its operations dashboard gives teams a clear view of daily activity across the station.",
+  focusDescription: "The PetroFlow dashboard brings daily sales, litres sold, petrol and diesel stock, credit balances, quick actions, and recent activity into one workspace. Additional screens show the employee directory, tank inventory, and point-of-sale flow.\n\nThe supplied mockups show the dashboard, tank inventory, and employee management screens on desktop displays.",
+  challenge: "Organize the moving parts of petrol station operations, from fuel stock and sales to staff, shifts, and point-of-sale activity.",
+  solution: "The PetroFlow dashboard brings daily sales, fuel stock, credit balances, and recent activity into one view. Dedicated screens extend that workflow to employees, tank inventory, and point of sale.",
+  results: "A practical station operations system with a unified dashboard, employee records, fuel inventory controls, and a dedicated point-of-sale workflow.",
+  category: "website-developing",
+  subCategory: "Petrol Station Management System",
+  status: "Completed",
+  publishStatus: "published",
+  projectType: "imageGallery",
+  features: [
+    "Operations dashboard with sales, stock, and credit summaries",
+    "Point-of-sale workflow for petrol, diesel, and other fuel types",
+    "Tank inventory and fuel stock level management",
+    "Employee directory with station, role, and status records",
+    "Station operations, shifts, purchases, and reporting",
+  ],
+  images: [
+    { url: "/mockups/petrol-management/petrol-flow-1.png", alt: "PetroFlow dashboard presented in a clean desktop monitor mockup", width: 1536, height: 1024 },
+    { url: "/mockups/petrol-management/petrol-flow-2.png", alt: "PetroFlow tank inventory shown on an angled desktop monitor", width: 1448, height: 1086 },
+    { url: "/mockups/petrol-management/petrol-flow-3.png", alt: "PetroFlow dashboard and employee management screens displayed side by side", width: 1448, height: 1086 },
+  ],
+  liveLink: "https://petrol.management.pixorasofttech.com/dashboard",
+  creatorName: "VersaNex",
+  reviews: [],
+  relatedProjects: [
+    { title: financeFlowProject.title, slug: financeFlowProject.slug, category: financeFlowProject.category, images: [financeFlowProject.homeImage] },
+    { title: callMindProject.title, slug: callMindProject.slug, category: callMindProject.category, images: [callMindProject.homeImage] },
+    { title: luxuryStayProject.title, slug: luxuryStayProject.slug, category: luxuryStayProject.category, images: [luxuryStayProject.homeImage] },
+  ],
+}
+
+const salonSystemProject = {
+  _id: "salon-management-system",
+  slug: "salon-management-system",
+  title: "Veloura Salon Management System",
+  isStatic: true,
+  homeImage: { url: "/mockups/salon-system/salon-pos-3.png", alt: "Veloura salon dashboard displayed on a desktop monitor", width: 1536, height: 1024 },
+  focusImage: { url: "/mockups/salon-system/salon-pos.png", alt: "Veloura salon reports and analytics screen displayed on a desktop monitor", width: 1536, height: 1024 },
+  description: "Veloura is a salon point-of-sale and operations platform that brings daily performance, customer records, staff activity, and sales reporting into one workspace. The showcase uses the supplied dashboard and customer-management screens.",
+  focusDescription: "The Veloura workspace gives salon teams a central view of daily operations and business performance. Dashboard and analytics screens summarize sales, appointments, service and product revenue, staff performance, and profit, while the customer directory keeps client records and purchase activity close at hand.",
+  challenge: "Give salon owners and staff a clear view of sales, customers, services, and team activity across everyday operations.",
+  solution: "Veloura brings operational metrics, sales analytics, customer records, staff performance, and service and product reporting into one workspace. The supplied mockups show the dashboard overview, reports and analytics, and customer management.",
+  results: "A unified salon operations workspace with dedicated views for business performance, reporting, and customer records, presented through the supplied Veloura product screens.",
+  category: "website-developing",
+  subCategory: "Salon POS & Management System",
+  status: "Completed",
+  publishStatus: "published",
+  projectType: "imageGallery",
+  features: [
+    "Salon dashboard with daily sales, appointments, and staff activity",
+    "Sales analytics for services, products, and profitability",
+    "Customer directory with visit and spending history",
+    "Staff, attendance, and salary workflows",
+    "Point-of-sale and salon operations in one workspace",
+  ],
+  images: [
+    { url: "/mockups/salon-system/salon-pos-3.png", alt: "Veloura salon management dashboard with sales, appointments, and operational status", width: 1536, height: 1024 },
+    { url: "/mockups/salon-system/salon-pos.png", alt: "Veloura reports and analytics with service revenue, product performance, and staff metrics", width: 1536, height: 1024 },
+    { url: "/mockups/salon-system/salon-pos-2.png", alt: "Veloura customer management with client profiles, visit history, and spending records", width: 1536, height: 1024 },
+  ],
+  liveLink: "https://salon.pixorasofttech.com/",
+  creatorName: "VersaNex",
+  reviews: [],
+  relatedProjects: [
+    { title: callMindProject.title, slug: callMindProject.slug, category: callMindProject.category, images: [callMindProject.homeImage] },
+    { title: petrolManagementProject.title, slug: petrolManagementProject.slug, category: petrolManagementProject.category, images: [petrolManagementProject.homeImage] },
+    { title: financeFlowProject.title, slug: financeFlowProject.slug, category: financeFlowProject.category, images: [financeFlowProject.homeImage] },
+  ],
+}
+const hrmsSystemProject = {
+  _id: "hrms-system",
+  slug: "hrms-system",
+  title: "PeopleFlow HRMS",
+  isStatic: true,
+  homeImage: { url: "/mockups/hrms-system/hrms-1.png", alt: "PeopleFlow HRMS dashboard displayed on a desktop monitor", width: 1448, height: 1086 },
+  focusImage: { url: "/mockups/hrms-system/hrms-2.png", alt: "PeopleFlow daily attendance management screen in a desktop mockup", width: 1504, height: 1046 },
+  description: "PeopleFlow HRMS brings employee administration, recruitment, attendance, leave, payroll, and workforce reporting into one management platform. Its dashboard gives teams a consolidated view of people operations and pending work.",
+  focusDescription: "PeopleFlow gives HR teams one place to manage the employee lifecycle, from recruitment and onboarding through attendance, leave, payroll, performance, and offboarding. The dashboard summarizes employee activity, absences, open roles, payroll, and pending requests.\n\nThe supplied mockups show the dashboard, daily attendance, and candidate pipeline screens.",
+  challenge: "Bring day-to-day HR work into a connected platform, while making employee records, attendance, recruitment, leave, and payroll straightforward to manage.",
+  solution: "PeopleFlow organizes HR operations through a shared dashboard and dedicated workflows for employees, candidate pipelines, attendance, leave requests, and payroll. Workforce summaries and quick actions help teams move between common tasks.",
+  results: "A broad HR management workspace that connects employee records with attendance, recruiting, payroll, and people operations. The dashboard and workflow mockups show key views across the platform.",
+  category: "website-developing",
+  subCategory: "Human Resource Management System",
+  status: "Completed",
+  publishStatus: "published",
+  projectType: "imageGallery",
+  features: [
+    "Employee records and workforce overview",
+    "Recruitment pipeline for candidates, interviews, and offers",
+    "Daily attendance, timesheets, shifts, and overtime",
+    "Leave requests, payroll, and performance workflows",
+    "Documents, assets, announcements, and HR reporting",
+  ],
+  images: [
+    { url: "/mockups/hrms-system/hrms-1.png", alt: "PeopleFlow HRMS dashboard with workforce summaries and HR quick actions", width: 1448, height: 1086 },
+    { url: "/mockups/hrms-system/hrms-2.png", alt: "PeopleFlow daily attendance with employee status and marking controls", width: 1504, height: 1046 },
+    { url: "/mockups/hrms-system/hrms-3.png", alt: "PeopleFlow recruitment pipeline with candidate stages and hiring records", width: 1505, height: 1045 },
+  ],
+  liveLink: "https://generic.hrms.pixorasofttech.com/",
+  creatorName: "VersaNex",
+  reviews: [],
+  relatedProjects: [
+    { title: financeFlowProject.title, slug: financeFlowProject.slug, category: financeFlowProject.category, images: [financeFlowProject.homeImage] },
+    { title: petrolManagementProject.title, slug: petrolManagementProject.slug, category: petrolManagementProject.category, images: [petrolManagementProject.homeImage] },
+    { title: callMindProject.title, slug: callMindProject.slug, category: callMindProject.category, images: [callMindProject.homeImage] },
+  ],
+}
 export function getStaticProject(slug) {
-  const project = [timeCenterProject, indusOliveProject, apexIeltsProject, maxCoatProject, mahalForetHayatProject, fixitProject, financeFlowProject, callMindProject, luxuryStayProject].find(project => project.slug === slug)
+  const project = [timeCenterProject, indusOliveProject, apexIeltsProject, maxCoatProject, mahalForetHayatProject, fixitProject, financeFlowProject, callMindProject, luxuryStayProject, petrolManagementProject, hrmsSystemProject, salonSystemProject].find(project => project.slug === slug)
   if (!project) return null
   return { ...project, images: project.images.map(image => ({ ...image })) }
 }
 
 // Read-only inventory for crawlers, including projects linked from case studies.
 export function getStaticProjects() {
-  return [timeCenterProject, indusOliveProject, apexIeltsProject, maxCoatProject, mahalForetHayatProject, fixitProject, financeFlowProject, callMindProject, luxuryStayProject]
+  return [timeCenterProject, indusOliveProject, apexIeltsProject, maxCoatProject, mahalForetHayatProject, fixitProject, financeFlowProject, callMindProject, luxuryStayProject, petrolManagementProject, hrmsSystemProject, salonSystemProject]
     .map(project => getStaticProject(project.slug))
 }
 
@@ -460,6 +576,10 @@ const hiddenProjectSlugs = new Set([
   "versanex-your-digital-innovation-partner",
   "aj-collection-e-commerce-fashion-lifestyle-store",
   "mern-stack-job-seeking-web-application",
+  "real-time-chat",
+  "seo-master-dashboard",
+  "university-portal",
+  "hotel-management-system",
 ])
 
 export function isPublicProject(project) {
@@ -467,7 +587,7 @@ export function isPublicProject(project) {
 }
 
 export function withPublicProjects(projects) {
-  const additions = [luxuryStayProject, callMindProject, mahalForetHayatProject, maxCoatProject, apexIeltsProject, financeFlowProject]
+  const additions = [luxuryStayProject, callMindProject, mahalForetHayatProject, maxCoatProject, apexIeltsProject, financeFlowProject, petrolManagementProject, hrmsSystemProject, salonSystemProject]
   const addedSlugs = new Set(additions.map(project => project.slug))
   return [...additions.map(project => getStaticProject(project.slug)), ...projects.filter(project => isPublicProject(project) && !addedSlugs.has(project.slug)).map(withProjectMedia)]
 }

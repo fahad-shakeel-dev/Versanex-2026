@@ -48,12 +48,12 @@ function StoryLabel({ children, active }) {
 }
 
 function Screenshot({ image, name, mobile, className, preserveAspect = false }) {
-  const deviceScene = image.url.startsWith("/mockups/fixit/") || image.url.startsWith("/mockups/finance-flow/") || image.url.startsWith("/mockups/callmind-ai/") || image.url.startsWith("/mockups/luxurystay/")
+  const deviceScene = image.url.startsWith("/mockups/fixit/") || image.url.startsWith("/mockups/finance-flow/") || image.url.startsWith("/mockups/callmind-ai/") || image.url.startsWith("/mockups/luxurystay/") || image.url.startsWith("/mockups/petrol-management/") || image.url.startsWith("/mockups/hrms-system/") || image.url.startsWith("/mockups/salon-system/")
   return <figure className={`${className} ${deviceScene ? styles.deviceScene : ""}`}
     style={preserveAspect ? { aspectRatio: `${image.width || 4} / ${image.height || 3}` } : undefined}>
     <Image src={image.url} alt={image.alt || `${name} interface preview`}
       fill sizes="(max-width: 767px) 90vw, 80vw"
-      className={mobile ? styles.appImage : styles.image}
+      className={mobile || deviceScene ? styles.appImage : styles.image}
       onError={event => { if (!event.currentTarget.src.endsWith("/placeholder.svg")) event.currentTarget.src = "/placeholder.svg" }} />
   </figure>
 }
@@ -78,10 +78,12 @@ export default function ProjectStory({ project }) {
     .filter((image, index, items) => items.findIndex(item => item.url === image.url) === index)
   const isCallMind = project.slug === "callmind-ai-voice-calling-platform"
   const isIndusOlive = project.slug === "food-delivery-web-app"
-  const hasPhoneScenes = project.slug === "fixit-your-ai-powered-home-services-companion" || project.slug === "finance-flow-finance-management-system" || project.slug === "callmind-ai-voice-calling-platform" || project.slug === "luxurystay"
+  const hasDeviceScenes = project.slug === "fixit-your-ai-powered-home-services-companion" || project.slug === "finance-flow-finance-management-system" || project.slug === "callmind-ai-voice-calling-platform" || project.slug === "luxurystay" || project.slug === "petrol-management-system" || project.slug === "hrms-system" || project.slug === "salon-management-system"
   const closingImage = isIndusOlive
     ? { url: "/mockups/Indus&Olive/all-mockup.png", alt: "Indus & Olive restaurant website across phone, laptop, and tablet mockups" }
-    : images[7]
+    : project.slug === "petrol-management-system" ? images[0]
+    : project.slug === "hrms-system" || project.slug === "salon-management-system" ? images[2]
+      : images[7]
   const mobile = project.category === "mobile-app-development"
   const liveLink = /^https?:\/\//i.test(project.liveLink || "") ? project.liveLink : null
   const galleryId = `project-story-gallery-${project.slug || "preview"}`
@@ -107,7 +109,7 @@ export default function ProjectStory({ project }) {
 
           {preview && (
             <ScrollFade className={`${styles.previewWrap} ${isCallMind ? styles.callMindPreview : ""}`} reducedMotion={reducedMotion}>
-              <Screenshot image={preview} name={story.name} mobile={mobile} className={styles.preview} preserveAspect={isCallMind} />
+              <Screenshot image={preview} name={story.name} mobile={mobile} className={styles.preview} preserveAspect={isCallMind || preview.url.startsWith("/mockups/petrol-management/") || preview.url.startsWith("/mockups/hrms-system/") || preview.url.startsWith("/mockups/salon-system/")} />
               <div className={styles.previewCaption}>
                 <div><h3>{story.name}</h3><p>{project.subCategory || (mobile ? "Mobile application" : "Digital experience")}</p></div>
                 {liveLink
@@ -129,10 +131,10 @@ export default function ProjectStory({ project }) {
       <section id={galleryId} className={styles.lightSection} aria-label="Project gallery and key takeaways">
         <div className={styles.inner}>
           {!!gallery.length && (
-            <div className={`${styles.gallery} ${gallery.length < 3 ? styles.shortGallery : ""} ${hasPhoneScenes ? styles.deviceGallery : ""} ${isCallMind ? styles.balancedGallery : ""}`}>
+            <div className={`${styles.gallery} ${gallery.length < 3 ? styles.shortGallery : ""} ${hasDeviceScenes ? styles.deviceGallery : ""} ${isCallMind ? styles.balancedGallery : ""}`}>
               {gallery.map((image, index) => (
                 <ScrollFade key={image.url} className={index === 0 ? styles.galleryMain : styles.galleryDetail} reducedMotion={reducedMotion}>
-                  <Screenshot image={image} name={story.name} mobile={mobile} className={styles.galleryImage} />
+                  <Screenshot image={image} name={story.name} mobile={mobile} className={styles.galleryImage} preserveAspect={image.url.startsWith("/mockups/petrol-management/") || image.url.startsWith("/mockups/hrms-system/") || image.url.startsWith("/mockups/salon-system/")} />
                 </ScrollFade>
               ))}
             </div>
@@ -144,7 +146,7 @@ export default function ProjectStory({ project }) {
               {!!story.features.length && <ol className={styles.featureList}>{story.features.map((feature, index) => <li key={feature}><span>{String(index + 1).padStart(2, "0")}</span>{feature}</li>)}</ol>}
             </ScrollFade>
           </div>
-          {closingImage && <ScrollFade reducedMotion={reducedMotion}><Screenshot image={closingImage} name={story.name} mobile={mobile} className={`${styles.closingImage} ${isIndusOlive ? styles.allMockupsImage : ""}`} /></ScrollFade>}
+          {closingImage && <ScrollFade reducedMotion={reducedMotion}><Screenshot image={closingImage} name={story.name} mobile={mobile} className={`${styles.closingImage} ${isIndusOlive ? styles.allMockupsImage : ""}`} preserveAspect={project.slug === "petrol-management-system" || project.slug === "hrms-system" || project.slug === "salon-management-system"} /></ScrollFade>}
         </div>
       </section>
     </>
